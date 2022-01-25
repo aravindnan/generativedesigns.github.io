@@ -1,0 +1,51 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Face Tracker</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-25.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clmtrackr@1.1.2/models/model_pca_10_svm.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clmtrackr@1.1.2/build/clmtrackr.min.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Face Detection</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> A simple implementation of face tracking model to understand the position of facial elements in a live feed using CLM Tracker </p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> Coordinates of facial elements are mapped in to an array and lines are draw from 4 locations in the canvas</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">tracker( )</span> - clm library function to create an object of clm</p>
+      <p><span class="fname">getCurrentPosition( )</span> - to obtain the coordinates of the face</p>
+      <p><span class="fname">line( )</span> - to draw lines between 2 points</p>
+      
+      
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Try moving your <span class="fname">Face</span> around</h2>
+
+
+  </div>
+
+</body>
+
+</html>

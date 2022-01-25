@@ -1,0 +1,47 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Edge Detection</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-21.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Edge Detection</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> Manually finding edges in an image using RGB values of pixels in an image</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> The average of the RGB values of each pixel is 
+        reduced by the pixel on its right side. That is if
+         the color is same,there is no edge but if there is a 
+         change in the value it would create an edge </p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">image( )</span> - t0 display an image in the canvas at a given location</p>
+      <p><span class="fname">updatePixels( )</span> - to change the pixel values to a new value or update to a new value</p>
+      
+    </div>
+
+
+  </div>
+</body>
+
+</html>

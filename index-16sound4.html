@@ -1,0 +1,55 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Synthesizer</title>
+  <style>
+   
+    
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js"></script>
+  <script src="p5sketch-16.js"></script>
+  <script src="helper.js"></script>
+</head> 
+<body>
+  
+  
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Synthesizer</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> Sound synthesizer mapped to a keypad of 
+        numbers to produce sounds of 9 different musical notes
+         and visually represent it on a grid of numbers</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> Each tile on the grid is draw with a function with particular 
+        flag on being pressed or not and based on the number pressed a
+         switch case assigning to a particular note to be played</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">addEventListener( )</span> - to obtain key input from the user</p>
+      <p><span class="fname">MonoSynth( )</span> - library function to produce musical notes based on key input using a switch case</p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Press different <span class="fname">Numbers</span> on the keyboard</h2>
+
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Resolution</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-19.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Image Resolution</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> Taking color values of pixels from
+         a given image and printing squares with 
+         that same color to replicate the effect of pixalation</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p>Each pixel of the image is traversed by 
+        a loop and based on the slider value the
+         increment in the loop is changed that is
+          that many pixels are skipped in the iteration</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">imageReso( )</span> - To draw rectangles on the canvas by taking color values from the image</p>
+      <p><span class="fname">loadImage( )</span> - to  load an image into the system memory</p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> below the image to change resolution</h2>
+
+  </div>
+</body>
+
+</html>

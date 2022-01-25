@@ -1,0 +1,87 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Fourier Transformation</title>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+  <script src="p5sketch-05.js"></script>
+  <script src="helper.js"></script>
+</head> 
+<body>
+  
+  
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Fourier Transformation</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> Fast Fourier Transformation (FFT) is a concept
+         used to analyze individual audio frequencies in 
+         a sound data and isolates them  within a waveform
+          and it is pictorially represented based on a sound 
+          bars and a waveform.</p>
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> Frequency values are mapped in to
+         the range of the height and position of 
+         the rectangles in the sound bars. Diffrent frequrrency 
+         values are also mapped to a specific vector lect to draw 
+         the waveform.</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">waveform( )</span> -  computes amplitude values along the time domain.</p>
+      <p><span class="fname">analyze( )</span> - amplitude values along the frequency domain.Frequencies from the low to the high</p>
+      
+    </div>
+
+    <select name="mtype" id="mtype">
+      <option value="v" selected>Violin</option>
+      <option value="p">Piano</option>
+      <option value="s">Saxaphone</option>
+      <option value="f">Flute</option>
+    </select>
+    <button id="btn" onclick=changeTrack()>Change</button>
+    <button id="btn" style="color:#ffffff; background-color: rgb(231, 65, 65);border: none;"
+     onclick=togglePlay()>Pause/Play</button>
+    <style>
+      #mtype{
+        color: white;
+        background-color: #2d2e2e;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 20px;
+        width: 15vw;
+        height: 3vw;
+        border-radius: 5px;
+        padding-left:1vw;
+      }
+      #btn{
+        font-size:20px ;
+        color: white;
+        background-color: #2d2e2e;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: fit-content;
+        padding-left: 1vw;
+        padding-right:1vw;
+        height: 3vw;
+        border-radius: 5px;
+        margin-top: 1vw;
+
+      }
+    </style>
+
+  </div>
+</body>
+
+</html>

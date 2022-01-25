@@ -1,0 +1,50 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Object Detection</title>
+ 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-23.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@2.0.0/dist/tf.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/coco-ssd@2.2.2/dist/coco-ssd.min.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Object Detection</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> To recognize everyday objects by using COCOssd 
+        which is a opensource machine learning model in Tensorflowjs</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p>The model is loaded and detects the image 
+        data from the webcam and uses a pre-trained neural
+         network to come up with an output about what the object is </p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">detect( )</span> - user defined function to draw a polygon of N sides</p>
+      <p><span class="fname">getImageData( )</span> - to obtain the image data at a particular location of particular width and height</p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Try showing different <span class="fname">Objects</span> to the camera</h2>
+
+
+  </div>
+</body>
+
+</html>

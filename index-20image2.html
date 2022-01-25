@@ -1,0 +1,49 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Raster Image</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-20.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Raster Image</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> This is a raster image representation of a banana.
+         The detail of the raster can be controlled by the
+          slider. The animation is expected to be slower with increase in detail</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p>The slider controls the value of the number of blocks 
+        and the size of the blocks which represent the image.
+         Each block is given color and depth based on the color 
+         and brightness in the picture respectively </p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">rotateY( )</span> - library function to rotate object around the Y axis</p>
+      <p><span class="fname">map( )</span> - to map values of a particular variable from one interval to another</p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> to change Raster detail</h2>
+
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,49 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Noise Representation in 2d</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-08.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">2D Noise</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> This is an animation using Perlin Noise. A type of gradient noise 
+        used by visual effects artists to increase the appearance of
+         realism in computer graphics.</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> Noise values are taken and mapped 
+        into range of the angle of rotation of each 
+        rectangle and the slider value to control the diamesion of the grid</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">strokeWeight( )</span> - to change the size of the rectanglebased on the noise value and the slider value</p>
+      <p><span class="fname">noise( )</span> - to obtain noise value of a coordinate in a 3D plain</p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> to change the number of boxes</h2>
+
+
+  </div>
+</body>
+
+</html>

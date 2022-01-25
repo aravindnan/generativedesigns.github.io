@@ -1,0 +1,79 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Binary Search</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-12.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Binary Search</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> Visual representation of the binary search algorithm in arrays. 
+         Based on user input search value.</p> 
+        <p> First Set a value -> search -> reset </p>         
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> A random array is created with elements 
+        in it . User input is taken for the search 
+        value and search is done by the binary search
+         algorithm and result is shown </p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">bbox( )</span> - to display each element of the array with different dimension,color and position </p>
+      <p><span class="fname">bsearch( )</span> - to perform the binary search algorithm and call bbox based on position and color</p>
+    </div>
+    <style>
+      #inp{
+        height: 3vw;
+        width:5vw;
+        font-size: 20px;
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+        background-color: white;
+        border: 3px solid #2d2e2e;
+        border-radius: 5px;
+        margin-top: -1vw;
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      #btn{
+        font-size:20px ;
+        color: white;
+        background-color: #2d2e2e;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: fit-content;
+        padding-left: 1vw;
+        padding-right:1vw;
+        height: 3vw;
+        border-radius: 5px;
+        margin-top: -1vw;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+    </style>
+
+<h2 style="color: #2d2e2e; margin-top: -0.04vw;"> Enter Search Value</h2>
+<input type="number" id="inp" >
+<button id="btn" onclick=getVal()>Set Value</button>
+
+  </div>
+</body>
+
+</html>

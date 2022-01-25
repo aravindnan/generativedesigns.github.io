@@ -1,0 +1,51 @@
+canvas{border-radius: 10px;
+    display: flex;
+    float: right;
+    align-items: center;
+    margin-right: 7vw;
+    margin-top: 4vw;
+  
+  }
+  .info{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    float: left;
+    margin-left: 5vw;
+    margin-top: 1vw;
+  }
+
+  .grow{
+    font-size: 1.1vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vw;
+    width:30vw;
+    height:3.5vw;
+    transition: height 1s ease-in-out;
+    -webkit-transition:  height 1s ease-in-out;
+    overflow: hidden;
+    margin-bottom: 2vw;
+    border: 3px solid #2d2e2e;
+    /*background-color: #2d2e2e;*/
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    /*color: white;*/
+    color:#2d2e2e;
+    text-align: justify;
+    
+}
+.grow:hover {
+    background-color: #2d2e2e ;
+    color: white;
+    -webkit-transition: background-color 1s ease-in;
+    animation-delay: 3s;
+    transition-duration: 1s;
+    transition: height 1s ease-in;
+    height:10vw ;
+    padding-bottom: 2vw;
+ }
+
+ .fname{
+     font-weight: bolder;
+     color: rgb(255, 101, 101);
+ }

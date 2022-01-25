@@ -1,0 +1,53 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Amplitude Reader</title>
+  <style>
+    
+  </style>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+  <script src="p5sketch-03.js"></script>
+  <script src="helper.js"></script>
+</head> 
+<body>
+  
+  
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Amplitude Reader</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p>Speak something into the mic and see the 
+        visual change in the polygon based on the 
+        amplitude of your voice input. Provide a consistent
+         whistling tune to see the best result</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> This program takes the input from the user
+         in the form of realtime audio and maps the 
+         amplitude value to to range of the radius
+          of the polygon and the size of the polygon</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">getLevel( )</span> - Library function to obtain the amplitude of user input</p>
+      <p><span class="fname">poly( )</span> - To draw a polygon of given radius and number of sides</p>
+      
+    </div>
+
+  </div>
+</body>
+
+</html>

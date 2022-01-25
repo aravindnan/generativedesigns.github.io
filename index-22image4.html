@@ -1,0 +1,49 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Video Processing</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5.svg.js"></script>
+  <script src="p5sketch-22.js"></script>
+  <script src="helper.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Video Processing</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> This program takes live video feed
+         from the webcam and intreprets the color 
+         values of each pixel and shows the video back in the form of hexagons</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> Each pixel of the live feed is mapped into a 
+        polygon and reprinted at each frame randomly and 
+        the resolution or the size if the polygon is controlled by the slider</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">createCapture( )</span> - to take video input from webcam</p>
+      <p><span class="fname">get( )</span> - to obtain color values of pixels in the video </p>
+      
+    </div>
+    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> to change Pixalation</h2>
+
+
+  </div>
+</body>
+
+</html>
