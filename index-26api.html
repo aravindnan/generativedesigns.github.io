@@ -1,0 +1,83 @@
+<html>
+<html lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="sketchPage.css">
+
+  <title>Weather</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+  <script src="p5sketch-26.js"></script>
+</head>
+
+<body>
+  <main>
+  </main>
+  <style>
+     #city{
+        height: 3vw;
+        width:15vw;
+        font-size: 20px;
+        padding-top: 1vw;
+        padding-bottom: 1vw;
+        background-color: white;
+        border: 3px solid #2d2e2e;
+        border-radius: 5px;
+        margin-top: -1vw;
+        font-weight: bold;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+      #btn{
+        font-size:20px ;
+        color: white;
+        background-color: #2d2e2e;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: fit-content;
+        padding-left: 1vw;
+        padding-right:1vw;
+        height: 3vw;
+        border-radius: 5px;
+        margin-top: -1vw;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      }
+  </style>
+  <div class="Info">
+    <h1 style="font-size: 4vw;color: #2d2e2e;">Weather API</h1>
+    <div class="grow">
+      <h3> Description </h3>
+      <p> An Application Programming Interface . Which allows 2
+         remote systems to share data or any form of information
+          and use in one's program. Here a Weather tracking API is
+           used to get current weather details about any city in the world</p>
+
+    </div>
+    <div class="grow">
+      <h3> Logic Used </h3>
+      <p> The API data is recieved in the format of a JSON file. Which
+         is called by an API Request based on the user's choice of the 
+         city. the JSON details are stored into a javascript object and 
+         accessed according to need .SVG images are used to represent the symbols</p>
+
+    </div>
+
+    <div class="grow">
+      <h3> Functions Used </h3>
+      <p><span class="fname">loadJSON( )</span> - to make an API request call to the server hosting the weather data</p>
+      <p><span class="fname">select( )</span> - to access the DOM element in the HTML page directly.</p>  
+      
+      
+      
+    </div>  
+    <h2 style="color: #2d2e2e;">Input <span class="fname">City name</span></h2>
+    <input type="text" id="city">
+    <button id="btn">Search</button>
+
+
+
+  </div>
+
+</body>
+
+</html>
