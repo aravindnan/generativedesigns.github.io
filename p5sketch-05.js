@@ -1,5 +1,6 @@
 let bg=255;
 let sound;
+let cnv;
 
 function preload(){
   sound = loadSound('sound1.mp3');
@@ -10,7 +11,7 @@ function preload(){
   function setup(){
     changeTrack();
 
-    let cnv = createCanvas(600,600);
+    cnv = createCanvas(600,600);
     cnv.mouseClicked(togglePlay);
     fft = new p5.FFT();
    
@@ -20,6 +21,7 @@ function preload(){
   
   function draw(){
     background(255);
+    cnv.mouseClicked(togglePlay);
     spec();
     wav();
     cwav();
