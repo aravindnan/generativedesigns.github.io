@@ -23,7 +23,6 @@ function preload(){
   }
   
   function draw(){
-    cnv.mouseClicked(togglePlay);
   
     background(255);
     spec();
