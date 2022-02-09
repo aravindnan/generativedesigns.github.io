@@ -11,7 +11,7 @@ function preload(){
   
   function setup(){
     changeTrack();
-
+    
     cnv = createCanvas(600,600);
     cnv.mouseClicked(togglePlay);
     fft = new p5.FFT();
@@ -126,7 +126,6 @@ function preload(){
        sound.pause();
        sound=null;
      }
-
      sound.amp(0.2);
      
   }
