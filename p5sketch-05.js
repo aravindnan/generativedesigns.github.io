@@ -10,6 +10,8 @@ function preload(){
 
   
   function setup(){
+    inp=select('#pbtn');
+    inp.mouseClicked(togglePlay);
     changeTrack();
     
     cnv = createCanvas(600,600);
@@ -22,8 +24,7 @@ function preload(){
   
   function draw(){
     cnv.mouseClicked(togglePlay);
-    inp=select('#pbtn');
-    inp.mouseClicked(togglePlay);
+  
     background(255);
     spec();
     wav();
