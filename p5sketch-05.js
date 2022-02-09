@@ -22,7 +22,7 @@ function preload(){
   
   function draw(){
     cnv.mouseClicked(togglePlay);
-    inp=select('pbtn');
+    inp=select('#pbtn');
     inp.mouseClicked(togglePlay);
     background(255);
     spec();
