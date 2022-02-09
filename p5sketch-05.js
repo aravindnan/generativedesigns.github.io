@@ -33,7 +33,7 @@ function preload(){
     fill('#2d2e2e')
     text('Wave', 20, 200);
     text('Spectrum',400,400)
-
+    inp.mousePressed(togglePlay);
     cnv.mouseClicked(togglePlay);
   }
   
