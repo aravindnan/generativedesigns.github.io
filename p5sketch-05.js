@@ -22,7 +22,7 @@ function preload(){
   
   function draw(){
     cnv.mouseClicked(togglePlay);
-    inp=select("pbtn");
+    inp=select('pbtn');
     inp.mousePressed(togglePlay);
     background(255);
     spec();
@@ -129,6 +129,7 @@ function preload(){
      }
 
      sound.amp(0.2);
+     inp.select('pbtn');
      inp.mousePressed(togglePlay);
      
   }
