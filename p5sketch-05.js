@@ -10,8 +10,6 @@ function preload(){
 
   
   function setup(){
-    inp=select('#pbtn');
-    inp.mouseClicked(togglePlay);
     changeTrack();
     
     cnv = createCanvas(600,600);
@@ -23,7 +21,7 @@ function preload(){
   }
   
   function draw(){
-  
+    cnv.mouseClicked(togglePlay);
     background(255);
     spec();
     wav();
@@ -32,8 +30,9 @@ function preload(){
     noStroke();
     fill('#2d2e2e')
     text('Wave', 20, 200);
-    text('Spectrum',400,400)
+    text('Spectrum',400,400);
     cnv.mouseClicked(togglePlay);
+    
   }
   
   function togglePlay() {
