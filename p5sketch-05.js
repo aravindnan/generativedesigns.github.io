@@ -20,8 +20,8 @@ function preload(){
   }
   
   function draw(){
-    background(255);
     cnv.mouseClicked(togglePlay);
+    background(255);
     spec();
     wav();
     cwav();
@@ -30,6 +30,7 @@ function preload(){
     fill('#2d2e2e')
     text('Wave', 20, 200);
     text('Spectrum',400,400)
+    cnv.mouseClicked(togglePlay);
   }
   
   function togglePlay() {
