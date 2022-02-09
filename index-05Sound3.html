@@ -54,7 +54,7 @@
       <option value="f">Flute</option>
     </select>
     <button id="btn" onclick=changeTrack()>Change</button>
-    <button id="btn" style="color:#ffffff; background-color: rgb(231, 65, 65);border:rgb(161, 41, 41) ;"
+    <button id="pbtn" style="color:#ffffff; background-color: rgb(231, 65, 65);"
      onclick=togglePlay()>Pause/Play</button>
     <style>
       #mtype{
@@ -67,6 +67,20 @@
         border-radius: 5px;
         padding-left:1vw;
       }
+      #pbtn{
+        font-size:20px ;
+        color: white;
+        background-color: #2d2e2e;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        width: fit-content;
+        padding-left: 1vw;
+        padding-right:1vw;
+        height: 3vw;
+        border-radius: 5px;
+        margin-top: 1vw;
+
+      }
+
       #btn{
         font-size:20px ;
         color: white;

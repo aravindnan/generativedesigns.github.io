@@ -1,6 +1,7 @@
 let bg=255;
 let sound;
 let cnv;
+let inp;
 
 function preload(){
   sound = loadSound('sound1.mp3');
@@ -21,6 +22,8 @@ function preload(){
   
   function draw(){
     cnv.mouseClicked(togglePlay);
+    inp=select("pbtn");
+    inp.mousePressed(togglePlay);
     background(255);
     spec();
     wav();
@@ -30,6 +33,7 @@ function preload(){
     fill('#2d2e2e')
     text('Wave', 20, 200);
     text('Spectrum',400,400)
+
     cnv.mouseClicked(togglePlay);
   }
   
