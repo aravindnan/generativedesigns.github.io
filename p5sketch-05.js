@@ -108,6 +108,7 @@ function preload(){
   }
   
    function changeTrack(){
+   
     sound.pause();
      waveform=[];
      spectrum=[];
@@ -128,5 +129,6 @@ function preload(){
      }
 
      sound.amp(0.2);
+     inp.mousePressed(togglePlay);
      
   }
