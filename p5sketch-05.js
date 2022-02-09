@@ -4,7 +4,7 @@ let cnv;
 let inp;
 
 function preload(){
-  sound = loadSound('sound1.mp3');
+  sound = loadSound('violin.mp3');
   }
 
 
