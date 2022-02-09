@@ -22,6 +22,8 @@ function preload(){
   
   function draw(){
     cnv.mouseClicked(togglePlay);
+    inp=select('pbtn');
+    inp.mouseClicked(togglePlay);
     background(255);
     spec();
     wav();
@@ -126,7 +128,5 @@ function preload(){
      }
 
      sound.amp(0.2);
-     inp.select('pbtn');
-     inp.mousePressed(togglePlay);
      
   }
