@@ -6,11 +6,6 @@ let vsound,psound,ssound,fsound;
 
 function preload(){
   sound = loadSound('violin.mp3');
-  vsound=loadSound('violin.mp3');
-  psound=loadSound('piano.mp3');
-  ssound=loadSound('saxaphone.mp3');
-  fsound=loadSound('flute.mp3');
-
   }
 
 
@@ -120,13 +115,13 @@ function preload(){
      selectElement = document.querySelector('#mtype');
      let ch = selectElement.options[selectElement.selectedIndex].value;
      if(ch==='v')
-     sound=vsound;
+     sound=loadSound('violin.mp3');
      else if(ch==='p')
-     sound=psound;
+     sound=loadSound('piano.mp3');
      else if(ch==='s')
-     sound=ssound;
+     sound=loadSound('saxaphone.mp3');
      else
-     sound=fsound;
+     sound=loadSound('flute.mp3');
      if (sound.isPlaying()) {
        sound.pause();
        sound=null;
