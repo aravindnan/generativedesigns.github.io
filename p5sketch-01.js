@@ -14,7 +14,9 @@ function setup() {
 color(0, 11, 73),
 color(155, 0, 0),
 color(255, 114, 114),
-
+color(255, 0, 0),
+color(155, 0, 0),
+color(28, 114, 114),
     
     
   ]
