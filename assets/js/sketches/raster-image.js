@@ -1,7 +1,7 @@
 let slider;
 let img;
 function preload(){
-img=loadImage('banana.jpg');
+img=loadImage('../assets/images/banana.jpg');
 }
 
 function setup(){

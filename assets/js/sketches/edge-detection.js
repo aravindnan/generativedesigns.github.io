@@ -3,7 +3,7 @@ var edgeimg;
 
 function preload(){
 
-    realimg=loadImage('image2re.jpg');
+    realimg=loadImage('../assets/images/image2re.jpg');
 
 }
 

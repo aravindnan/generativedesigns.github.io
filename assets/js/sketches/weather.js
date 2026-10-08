@@ -31,13 +31,13 @@ function askCity(){
 }
 
 function preload(){
-    temparature_img=loadImage('temp.svg');
-    humidity_img=loadImage('humidity.svg');
-    location_img=loadImage('location.svg');
-    lonlan_img=loadImage('globe.svg');
-    rain_img=loadImage('rain.svg');
-    wind_img=loadImage('wind.svg');
-    pressure_img=loadImage('pressure.svg');
+    temparature_img=loadImage('../assets/icons/temp.svg');
+    humidity_img=loadImage('../assets/icons/humidity.svg');
+    location_img=loadImage('../assets/icons/location.svg');
+    lonlan_img=loadImage('../assets/icons/globe.svg');
+    rain_img=loadImage('../assets/icons/rain.svg');
+    wind_img=loadImage('../assets/icons/wind.svg');
+    pressure_img=loadImage('../assets/icons/pressure.svg');
 
 }
 function gotData(data){

@@ -3,7 +3,7 @@ let img;
 let cnv;
 let reso;
 function preload(){
-img=loadImage('image2re.jpg');
+img=loadImage('../assets/images/image2re.jpg');
 }
 function setup(){
     cnv=createCanvas(img.width,img.height);
