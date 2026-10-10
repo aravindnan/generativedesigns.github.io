@@ -1,16 +1,15 @@
 
 let img;
 let cnv;
-let reso;
+let resolutionSlider;
 function preload(){
 img=loadImage('../assets/images/image2re.jpg');
 }
 function setup(){
     cnv=createCanvas(img.width,img.height);
-    reso=createSlider(1,25,25,-1);
-    reso.style('width','300');
-    reso.position(windowWidth/1.55, 670);
-
+    resolutionSlider=document.getElementById('resolution-level');
+    resolutionSlider.addEventListener('input', updateSliderFill);
+    updateSliderFill();
 }
 
 
@@ -20,7 +19,7 @@ function draw()
     imageReso();
 }
 function imageReso(){
-    let size=reso.value();
+    let size=26-Number(resolutionSlider.value);
 for(let col=0;col<img.width;col+=size){
     for(let row=0;row<img.height;row+=size){
         let xpos=col;
@@ -42,7 +41,9 @@ for(let col=0;col<img.width;col+=size){
 
 }
 
-
+function updateSliderFill(){
+    resolutionSlider.style.setProperty('--p', ((resolutionSlider.value-resolutionSlider.min)/(resolutionSlider.max-resolutionSlider.min)*100)+'%');
+}
 
 
 

@@ -1,17 +1,32 @@
 const agents=[]; 
 let bg=255;
+let nodeCountSlider;
+let nodeCountValue;
 function setup(){
     createCanvas(600,600);
     frameRate(60);
     angleMode(DEGREES);
-    for(let i=0;i<35;i++){
-        const x=random(0,width);
-        const y=random(0,height);
-      
-        agents.push(new Agent(x,y));
-        }
+    nodeCountSlider=document.getElementById('node-count-slider');
+    nodeCountValue=document.getElementById('node-count-value');
+    nodeCountSlider.addEventListener('input', updateNodeCount);
+    updateSliderFill();
+    updateNodeCount();
+}
 
-  }
+function updateNodeCount(){
+    const count=Number(nodeCountSlider.value);
+    while(agents.length<count){
+        agents.push(new Agent(random(0,width),random(0,height)));
+    }
+    agents.length=count;
+    nodeCountValue.textContent=String(count);
+    updateSliderFill();
+}
+
+function updateSliderFill(){
+    const progress=(nodeCountSlider.value-nodeCountSlider.min)/(nodeCountSlider.max-nodeCountSlider.min)*100;
+    nodeCountSlider.style.setProperty('--p',progress+'%');
+}
   
   function draw(){
     background(bg);

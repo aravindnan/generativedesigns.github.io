@@ -1,12 +1,12 @@
 function setup(){
     createCanvas(600,600);
     background(220);
-
+    document.getElementById('enqueue-queue').addEventListener('click', enqueue);
+    document.getElementById('dequeue-queue').addEventListener('click', dequeue);
 }
 
 let flag =0;
 let num=0;
-let ch='n';
 let front= -1;
 let rear=-1;
 let max=15;
@@ -15,55 +15,52 @@ let bg=255;
 
 function draw(){
     background(bg);
-    document.addEventListener('keypress',action)
     drawCircle(num,flag);
     fill(50);
-
-
 }
 
-function action(e)//Queue operation
-{
-  ch=e.key;
-  console.log(ch);
-  if(ch=='a')//Enque
-  {
-    if(front==0 && rear==max-1 || front==rear+1)
-      {flag=1;console.log("Overflow");return;}
-    else
-    {
-      if(front==-1)
-        front=rear=0;
-      else if(rear==max-1)
-        rear=0;
-      else
-        rear++;
-    }  
-    flag=0;  
-    q[rear]=rear;
-    num++;
-    console.log(q);
-  }
-
-  if(ch=='d')//Deque
-  {
-    if(front==-1)
-      {flag=-1;console.log("underflow");return;}
-    else
-    {
-      if(front==rear)
-        front=rear=-1;
-      else if(front==max-1)
-        front=0;
-      else 
-        front++;
-    }  
-    flag=0;  
-    num--; 
-    console.log(q);
-  }
-
+function action(e){
+  const key=e.key.toLowerCase();
+  if(key=='a') enqueue();
+  if(key=='d') dequeue();
 }
+
+function enqueue(){
+  if((front==0 && rear==max-1) || front==rear+1){
+    flag=1;
+    console.log("Overflow");
+    return;
+  }
+  if(front==-1)
+    front=rear=0;
+  else if(rear==max-1)
+    rear=0;
+  else
+    rear++;
+
+  flag=0;
+  q[rear]=rear;
+  num++;
+}
+
+function dequeue(){
+  if(front==-1){
+    flag=-1;
+    console.log("underflow");
+    return;
+  }
+  if(front==rear)
+    front=rear=-1;
+  else if(front==max-1)
+    front=0;
+  else
+    front++;
+
+  flag=0;
+  num--;
+}
+
+document.addEventListener('keypress', action);
 
 
 function drawCircle(num,flag)

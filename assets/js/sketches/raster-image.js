@@ -1,4 +1,4 @@
-let slider;
+let samplingSlider;
 let img;
 function preload(){
 img=loadImage('../assets/images/banana.jpg');
@@ -10,15 +10,15 @@ function setup(){
   img.resize(400,400);
   frameRate(200);
   angleMode(DEGREES);
-  slider=createSlider(10,150,1);
-  slider.position(windowWidth/1.55, 670);
-  slider.style('width','300');
+  samplingSlider=document.getElementById('sampling-level');
+  samplingSlider.addEventListener('input', updateSliderFill);
+  updateSliderFill();
 }
 
 function draw(){
   background(255);
   noStroke();
-  let tiles = slider.value();
+  let tiles = samplingSlider.value;
   let  tileSize = width/tiles;
   push();
   translate(50,100);
@@ -44,3 +44,6 @@ function draw(){
   pop();
 }
 
+function updateSliderFill(){
+  samplingSlider.style.setProperty('--p', ((samplingSlider.value-samplingSlider.min)/(samplingSlider.max-samplingSlider.min)*100)+'%');
+}

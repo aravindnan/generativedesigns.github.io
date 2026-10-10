@@ -1,17 +1,25 @@
-var angle=60;
+var angle=30;
+var branchAngleSlider;
+var branchAngleValue;
 function setup(){
     createCanvas(600,600);
     angleMode(DEGREES);
-    slider=createSlider(0,360,180,0.0001);
-    slider.position(windowWidth/1.55,windowHeight/2+height/2+10);
-    slider.style('width','300px');
+    branchAngleSlider=document.getElementById('branch-angle-slider');
+    branchAngleValue=document.getElementById('branch-angle-value');
+    branchAngleSlider.addEventListener('input', updateBranchAngle);
+    updateBranchAngle();
     strokeCap(SQUARE);
-  
+}
+
+function updateBranchAngle(){
+    angle=Number(branchAngleSlider.value);
+    branchAngleValue.textContent=angle+'°';
+    const progress=(branchAngleSlider.value-branchAngleSlider.min)/(branchAngleSlider.max-branchAngleSlider.min)*100;
+    branchAngleSlider.style.setProperty('--p',progress+'%');
 }
 
 function draw(){
     background(255);
-    angle=slider.value();
     stroke(0);
     translate(300,height/1.15);
     branchup(160);
@@ -37,4 +45,3 @@ function branchup(length)
     }
     
 }
-

@@ -1,5 +1,5 @@
 let vid;
-let slider;
+let samplingSlider;
 
 function setup(){
     createCanvas(600,450);
@@ -8,9 +8,9 @@ function setup(){
     frameRate(100);
     angleMode(DEGREES);
 
-    slider=createSlider(5,30,30,0.5);
-    slider.position(windowWidth/1.55,600);
-    slider.style('width','300px');
+    samplingSlider=document.getElementById('video-sampling-level');
+    samplingSlider.addEventListener('input', updateSliderFill);
+    updateSliderFill();
 }
 
 function draw(){
@@ -20,9 +20,12 @@ function draw(){
         var colo=vid.get(xpos,ypos);
         noStroke();
         fill(colo,25);
-        let side=slider.value();
+        let side=35-Number(samplingSlider.value);
         poly(xpos,ypos,side,6);
         vid.hide();
     }
+}
 
+function updateSliderFill(){
+    samplingSlider.style.setProperty('--p', ((samplingSlider.value-samplingSlider.min)/(samplingSlider.max-samplingSlider.min)*100)+'%');
 }
