@@ -99,6 +99,70 @@ main canvas, main svg {
   height: auto !important;
   border-radius: var(--radius);
 }
+.sketch-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 16px;
+}
+.sketch-controls:empty { display: none; }
+.sketch-controls > * { position: static !important; margin: 0 !important; }
+.control-panel {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 10px;
+}
+.control-panel label { display: grid; gap: 5px; font-size: .85rem; color: var(--muted); }
+.control-panel input, .control-panel select {
+  min-height: 42px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  color: var(--text);
+  font: inherit;
+}
+.control-panel input[type="number"] { width: 132px; }
+.control-panel button, .sketch-controls button {
+  min-height: 42px;
+  padding: 8px 16px;
+  border: 1px solid #000;
+  border-radius: var(--radius);
+  background: #000;
+  color: #fff;
+  font: inherit;
+  cursor: pointer;
+  transition: background .2s, color .2s;
+}
+.sketch-controls button {
+  width: auto !important;
+  height: auto !important;
+  border: 1px solid #000 !important;
+  border-radius: var(--radius) !important;
+  background: #000 !important;
+  box-shadow: none !important;
+  color: #fff !important;
+  font: inherit !important;
+}
+.control-panel button:hover, .sketch-controls button:hover {
+  background: #fff;
+  color: #000;
+}
+.sketch-controls button:hover { background: #fff !important; color: #000 !important; }
+.control-panel input[type="range"], .sketch-controls input[type="range"] {
+  accent-color: #000;
+}
+.interaction-note {
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-left: 2px solid #000;
+  background: var(--bg-soft);
+  color: var(--muted);
+  font-size: .92rem;
+}
+.permission-note { margin-top: 12px; font-size: .85rem; color: var(--muted); }
 .facts { display: flex; flex-wrap: wrap; gap: 14px 56px; margin-top: 30px; }
 .fact b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 1.7rem; line-height: 1.2; }
 .fact span { font-size: .82rem; color: var(--muted); }
@@ -115,6 +179,8 @@ main canvas, main svg {
 .grow p { font-size: .95rem; color: var(--muted); }
 .fn + .fn { margin-top: 16px; }
 .fn p { margin-top: 6px; }
+.fn a { display: block; }
+.fn a:hover .fname { background: #000; color: #fff; }
 .fname {
   display: inline-block;
   font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
@@ -157,5 +223,5 @@ footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-siz
   html { scroll-behavior: auto; }
   .js .reveal { opacity: 1; transform: none; transition: none; }
   .tag.live i { animation: none; }
-  .btn, .grow, .pager a { transition: none; }
+  .btn, .grow, .pager a, .control-panel button, .sketch-controls button { transition: none; }
 }
