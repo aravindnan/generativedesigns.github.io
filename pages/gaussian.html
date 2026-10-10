@@ -1,45 +1,109 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <meta name="theme-color" content="#ffffff">
+  <title>Gaussian · Generative Designs</title>
+  <meta name="description" content="Gaussian-distributed random values are mapped into a visual pattern around the canvas centre.">
   <link rel="icon" href="../assets/icons/favicon.svg">
-  <title>Gaussian</title>
- 
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/gaussian.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Gaussian Random</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> Representation of a Gaussian process. It  is a stochastic process (a collection of random variables indexed by time or space), such that every finite collection of those random variables has a multivariate normal distribution,</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#misc">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Values of a gaussian radom functions are mapped to an array a based on that value vectors are draw from the canter of the canvas.</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#misc">Miscellaneous</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Gaussian</span>
+      </nav>
+      <h1>Gaussian</h1>
+      <p class="lead">Gaussian-distributed random values are mapped into a visual pattern around the canvas centre.</p>
+      <div class="tags">
+        <span class="tag">Miscellaneous</span>
+        <span class="tag">p5.js · Gaussian randomness</span>
+        <span class="tag live"><i></i>Click</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">drawPattern( )</span> - to display the vectors moving  or expanding</p>
-      <p><span class="fname">randomGaussian( )</span> - to calculate the gaussian random values</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Gaussian sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Click</b><span>Interaction</span></div>
+        <div class="fact"><b>Gaussian distribution</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Click the canvas to generate another pattern.</p>
     </div>
-    <h2 style="color: #2d2e2e;">Click on the <span class="fname">Animation</span> to reiterate</h2>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>A radial pattern visualises 360 values sampled from a Gaussian distribution.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Each random sample sets the length of a spoke around the canvas centre. Click the canvas to reload the page and sample a new set of values.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">drawPattern( )</code> - to display the vectors moving or expanding</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">randomGaussian( )</code> - to calculate the gaussian random values</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="curves.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Curves</strong>
+      </a>
+      <a class="next" href="weather.html">
+        <small>Next</small>
+        <strong>Weather API <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

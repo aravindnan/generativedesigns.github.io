@@ -1,50 +1,109 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Noise Representation in 2d</title>
-  
+  <meta name="theme-color" content="#ffffff">
+  <title>2D Noise · Generative Designs</title>
+  <meta name="description" content="A two-dimensional field of Perlin noise controls a changing arrangement of marks.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/noise-representation-2d.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">2D Noise</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> This is an animation using Perlin Noise. A type of gradient noise 
-        used by visual effects artists to increase the appearance of
-         realism in computer graphics.</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#misc">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Noise values are taken and mapped 
-        into range of the angle of rotation of each 
-        rectangle and the slider value to control the diamesion of the grid</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#misc">Miscellaneous</a><span aria-hidden="true">/</span>
+        <span aria-current="page">2D Noise</span>
+      </nav>
+      <h1>2D Noise</h1>
+      <p class="lead">A two-dimensional field of Perlin noise controls a changing arrangement of marks.</p>
+      <div class="tags">
+        <span class="tag">Miscellaneous</span>
+        <span class="tag">p5.js · Perlin noise</span>
+        <span class="tag live"><i></i>Slider</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">strokeWeight( )</span> - to change the size of the rectanglebased on the noise value and the slider value</p>
-      <p><span class="fname">noise( )</span> - to obtain noise value of a coordinate in a 3D plain</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="2D Noise sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Slider</b><span>Interaction</span></div>
+        <div class="fact"><b>Perlin noise</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Move the slider to adjust the number of boxes.</p>
     </div>
-    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> to change the number of boxes</h2>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Explore a changing grid of line segments shaped by two-dimensional Perlin noise.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Noise values vary smoothly across the grid and over time. The sketch maps each value to a line angle and stroke weight; the slider changes the grid density.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">strokeWeight( )</code> Sets each line's width from its noise value.</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">noise( )</code> Samples a smooth two-dimensional noise field.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="nodes-in-free-space.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Nodes in Free Space</strong>
+      </a>
+      <a class="next" href="recursion.html">
+        <small>Next</small>
+        <strong>Recursion <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

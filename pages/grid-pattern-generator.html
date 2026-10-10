@@ -15,11 +15,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="../assets/js/mount-sketch.js"></script>
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/sketches/grid-pattern-generator.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
 
 <body>
@@ -43,7 +41,7 @@
         <span aria-current="page">Grid Pattern</span>
       </nav>
       <h1>Grid Pattern</h1>
-      <p class="lead">A grid of tiles that keep deciding, at random, which of them should light up.</p>
+      <p class="lead">A six-by-six grid redraws with a fresh chance-based highlight pattern twice each second.</p>
       <div class="tags">
         <span class="tag">System randomness</span>
         <span class="tag">p5.js</span>
@@ -55,11 +53,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       <div class="facts">
+        <div class="fact"><b>600 &times; 600</b><span>Canvas</span></div>
+        <div class="fact"><b>2 fps</b><span>Refresh rate</span></div>
         <div class="fact"><b>6 &times; 6</b><span>Tiles</span></div>
-        <div class="fact"><b>0.4</b><span>Highlight chance per tile</span></div>
-        <div class="fact"><b>2</b><span>Library functions</span></div>
       </div>
+      <p class="interaction-note"><strong>Try it:</strong> Watch the grid refresh. Each tile has a 40% chance of receiving a heavier outline on every frame.</p>
     </div>
   </section>
 
@@ -76,18 +76,16 @@
         <div class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Every tile is drawn separately on each frame. A tile has a 0.4 chance of being highlighted, which is done by drawing a second, smaller square at the same centre with a reduced size.</p>
+          <p>Every tile is drawn separately on each frame. Each has a 40% chance of receiving a heavier outline; the sketch refreshes twice per second.</p>
         </div>
         <div class="grow reveal" style="--d:.25s">
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <span class="fname">random( )</span>
-            <p>Library function that returns a random number between 0 and 1.</p>
+            <p><code class="fname">random( )</code> Chooses whether the current tile receives an extra outline.</p>
           </div>
           <div class="fn">
-            <span class="fname">rect( )</span>
-            <p>Library function that draws a rectangle at a given position with given dimensions.</p>
+            <p><code class="fname">rect( )</code> Draws each grid tile.</p>
           </div>
         </div>
       </div>
@@ -110,17 +108,7 @@
   <footer>
     <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
   </footer>
-
-  <script>
-    (function () {
-      var els = document.querySelectorAll('.reveal');
-      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-      }, { threshold: .12 });
-      els.forEach(function (e) { io.observe(e); });
-    })();
-  </script>
+  <script src="../assets/js/experiment-page.js"></script>
 </body>
 
 </html>

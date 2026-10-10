@@ -1,52 +1,112 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Bubble Sort </title>
-  
-   
+  <meta name="theme-color" content="#ffffff">
+  <title>Bubble Sort · Generative Designs</title>
+  <meta name="description" content="Watch adjacent values compare and swap until the generated array is sorted.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/bubble-sort.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Bubble Sort</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> Visual representation of the bubble 
-        sort algorithm to sort an array of elements 
-        and represent in the form of an animation</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#principles">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> A random array of elements is created displayed in 
-        the form of rectangles. The
-         the rectangles are moved based the height which 
-         corresponds to its value in the array</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#principles">Programming principles</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Bubble Sort</span>
+      </nav>
+      <h1>Bubble Sort</h1>
+      <p class="lead">Watch adjacent values compare and swap until the generated array is sorted.</p>
+      <div class="tags">
+        <span class="tag">Programming principles</span>
+        <span class="tag">p5.js</span>
+        <span class="tag live"><i></i>Buttons</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">bsort( )</span> - to implement the bubble sort algorithm in the array</p>
-      <p><span class="fname">printsort( )</span> - to print the  semi-sorted array at each frame </p>
-      <p><span class="fname">makearray( )</span> - to create a random array of elements</p>
-
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Bubble Sort sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Buttons</b><span>Interaction</span></div>
+        <div class="fact"><b>Animated sorting</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Choose Sort Now to run the animation, or Reset to create a new array.</p>
     </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Watch a generated array of bars move into order as bubble sort compares neighbouring values.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Each sorting step compares adjacent array values and swaps them when they are out of order. The bars are redrawn to show the progress.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">bsort( )</code> - to implement the bubble sort algorithm in the array</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">printsort( )</code> - to print the semi-sorted array at each frame</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">makearray( )</code> - to create a random array of elements</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="binary-search.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Binary Search</strong>
+      </a>
+      <a class="next" href="../index.html#principles">
+        <small>Collection</small>
+        <strong>Programming principles <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

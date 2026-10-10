@@ -1,83 +1,112 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <meta name="theme-color" content="#ffffff">
+  <title>Weather API · Generative Designs</title>
+  <meta name="description" content="Look up current weather for a city and visualise the returned conditions and measurements.">
   <link rel="icon" href="../assets/icons/favicon.svg">
-  <title>Weather</title>
-  
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
-  <script src="../assets/js/sketches/weather.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <style>
-     #city{
-        height: 3vw;
-        width:15vw;
-        font-size: 20px;
-        padding-top: 1vw;
-        padding-bottom: 1vw;
-        background-color: white;
-        border: 3px solid #2d2e2e;
-        border-radius: 5px;
-        margin-top: -1vw;
-        font-weight: bold;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      #btn{
-        font-size:20px ;
-        color: white;
-        background-color: #2d2e2e;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: fit-content;
-        padding-left: 1vw;
-        padding-right:1vw;
-        height: 3vw;
-        border-radius: 5px;
-        margin-top: -1vw;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-  </style>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Weather API</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> An Application Programming Interface . Which allows 2
-         remote systems to share data or any form of information
-          and use in one's program. Here a Weather tracking API is
-           used to get current weather details about any city in the world</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#misc">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> The API data is recieved in the format of a JSON file. Which
-         is called by an API Request based on the user's choice of the 
-         city. the JSON details are stored into a javascript object and 
-         accessed according to need .SVG images are used to represent the symbols</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#misc">Miscellaneous</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Weather API</span>
+      </nav>
+      <h1>Weather API</h1>
+      <p class="lead">Look up current weather for a city and visualise the returned conditions and measurements.</p>
+      <div class="tags">
+        <span class="tag">Miscellaneous</span>
+        <span class="tag">Weather API · p5.js</span>
+        <span class="tag live"><i></i>City search</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">loadJSON( )</span> - to make an API request call to the server hosting the weather data</p>
-      <p><span class="fname">select( )</span> - to access the DOM element in the HTML page directly.</p>  
-      
-      
-      
-    </div>  
-    <h2 style="color: #2d2e2e;">Input <span class="fname">City name</span></h2>
-    <input type="text" id="city">
-    <button id="btn">Search</button>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Weather API sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"><div class="control-panel" aria-label="Weather search">
+        <label for="city">City name
+          <input id="city" type="text" autocomplete="address-level2" placeholder="e.g. Toronto">
+        </label>
+        <button type="button" id="btn">Search</button>
+      </div></div>
+      <p class="permission-note">Weather results depend on the remote service being available.</p>
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>City search</b><span>Interaction</span></div>
+        <div class="fact"><b>Live API data</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Enter a city name and choose Search. The browser needs an active network connection.</p>
+    </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Search for a city to display its current conditions, temperature, humidity, precipitation, wind and pressure.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>The city name is sent to the weather service as a JSON request. The returned location and current-condition fields are drawn with labels and icons.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">loadJSON( )</code> - to make an API request call to the server hosting the weather data</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">select( )</code> - to access the DOM element in the HTML page directly.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="gaussian.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Gaussian</strong>
+      </a>
+      <a class="next" href="../index.html#misc">
+        <small>Collection</small>
+        <strong>Miscellaneous <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/sketches/weather.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
 </body>
-
 </html>

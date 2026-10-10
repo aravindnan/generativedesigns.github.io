@@ -1,51 +1,114 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Face Tracker</title>
+  <meta name="theme-color" content="#ffffff">
+  <title>Face Tracker · Generative Designs</title>
+  <meta name="description" content="A face-tracking model follows facial feature points in the live camera image.">
   <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
-  <script src="../assets/js/sketches/face-tracker.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/clmtrackr@1.1.2/models/model_pca_10_svm.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/clmtrackr@1.1.2/build/clmtrackr.min.js"></script>
-  <script src="../assets/js/helpers.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/clmtrackr@1.1.2/models/model_pca_10_svm.js"></script>
+  <script src="../assets/js/sketches/face-tracker.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Face Detection</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> A simple implementation of face tracking model to understand the position of facial elements in a live feed using CLM Tracker </p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#ml">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Coordinates of facial elements are mapped in to an array and lines are draw from 4 locations in the canvas</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#ml">Machine learning</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Face Tracker</span>
+      </nav>
+      <h1>Face Tracker</h1>
+      <p class="lead">A face-tracking model follows facial feature points in the live camera image.</p>
+      <div class="tags">
+        <span class="tag">Machine learning</span>
+        <span class="tag">clmtrackr</span>
+        <span class="tag live"><i></i>Camera</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">tracker( )</span> - clm library function to create an object of clm</p>
-      <p><span class="fname">getCurrentPosition( )</span> - to obtain the coordinates of the face</p>
-      <p><span class="fname">line( )</span> - to draw lines between 2 points</p>
-      
-      
-      
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Face Tracker sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
+      <p class="permission-note">Camera access is requested by your browser. The video is processed locally by this demo.</p>
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Camera</b><span>Interaction</span></div>
+        <div class="fact"><b>Facial landmarks</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Allow camera access and move your face within the camera view.</p>
     </div>
-    <h2 style="color: #2d2e2e;">Try moving your <span class="fname">Face</span> around</h2>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Follow facial feature points detected in a live camera feed.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>clmtrackr estimates facial landmarks from the camera image. Lines are drawn from the canvas edges toward the detected points.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">tracker( )</code> - clm library function to create an object of clm</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">getCurrentPosition( )</code> - to obtain the coordinates of the face</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">line( )</code> - to draw lines between 2 points</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="hand-position.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Hand Position</strong>
+      </a>
+      <a class="next" href="../index.html#ml">
+        <small>Collection</small>
+        <strong>Machine learning <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
 </body>
-
 </html>

@@ -1,49 +1,109 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Raster Image</title>
-  
+  <meta name="theme-color" content="#ffffff">
+  <title>Raster Image · Generative Designs</title>
+  <meta name="description" content="Explore a raster image as sampled pixels arranged in a three-dimensional composition.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/raster-image.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Raster Image</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> This is a raster image representation of a banana.
-         The detail of the raster can be controlled by the
-          slider. The animation is expected to be slower with increase in detail</p>
-          <link rel="icon" href="../assets/icons/favicon.svg">
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#image">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p>The slider controls the value of the number of blocks 
-        and the size of the blocks which represent the image.
-         Each block is given color and depth based on the color 
-         and brightness in the picture respectively </p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#image">Image manipulation</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Raster Image</span>
+      </nav>
+      <h1>Raster Image</h1>
+      <p class="lead">Explore a raster image as sampled pixels arranged in a three-dimensional composition.</p>
+      <div class="tags">
+        <span class="tag">Image manipulation</span>
+        <span class="tag">p5.js · WEBGL</span>
+        <span class="tag live"><i></i>Image + slider</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">rotateY( )</span> - library function to rotate object around the Y axis</p>
-      <p><span class="fname">map( )</span> - to map values of a particular variable from one interval to another</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Raster Image sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600 · WEBGL</b><span>Canvas</span></div>
+        <div class="fact"><b>Image + slider</b><span>Interaction</span></div>
+        <div class="fact"><b>Pixel sampling</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Move the slider to change the number of image tiles.</p>
     </div>
-    <h2 style="color: #2d2e2e;">Move the <span class="fname">Slider</span> to change Raster detail</h2>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Turn a bundled image into a rotating 3D field of coloured cuboids.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Each tile samples the image colour and brightness at its position. Brightness affects the tile depth and size; the slider changes the number of samples across the image.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">rotateY( )</code> - library function to rotate object around the Y axis</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">map( )</code> - to map values of a particular variable from one interval to another</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="edge-detection.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Edge Detection</strong>
+      </a>
+      <a class="next" href="video-processing.html">
+        <small>Next</small>
+        <strong>Video Processing <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

@@ -1,70 +1,174 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>References</title>
-  <style>
-    .grow{
-    font-size: 1vw;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    width:30vw;
-    height:min-content;
-    margin-bottom: 0.4vw;
-    border: 3px solid #2d2e2e;
-    /*background-color: #2d2e2e;*/
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    /*color: white;*/
-    color:#2d2e2e;
-    text-align: center;
-    
-  }
-  .grow:hover {
-    background-color: #2d2e2e ;
-    color: white;
-    
-  }
-  body{font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;}
-  
-  
- .info{
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    align-items: center;
-    margin-left: 35vw;
-    justify-content: center;
-    display:inline-block;
-    text-align: center;
+  <meta name="theme-color" content="#ffffff">
+  <title>References · Generative Designs</title>
+  <meta name="description" content="The libraries, tutorials and books behind Generative Designs, and what each one was used for.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.className += ' js';</script>
 
-  }
-  a{
-    text-decoration: none;
-  }
-   
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
+
+  <style>
+    /* References page only. Tokens, header and footer come from experiment.css */
+    .ref-hero { padding: 72px 0 40px; }
+    .ref-hero h1 { font-size: clamp(2.5rem, 6.4vw, 5rem); margin: 14px 0 18px; }
+
+    .group { display: grid; grid-template-columns: minmax(220px, 300px) 1fr; gap: clamp(32px, 6vw, 88px); padding: 56px 0; }
+    .group + .group { padding-top: 24px; }
+    .g-head { align-self: start; position: sticky; top: 96px; }
+    .g-head .section-label { margin-bottom: 12px; }
+    .g-head h2 { font-size: clamp(1.6rem, 2.6vw, 2.1rem); margin-bottom: 12px; }
+    .g-head p { color: var(--muted); font-size: .95rem; max-width: 30ch; }
+
+    .list { display: grid; gap: 4px; margin-inline: -20px; }
+    .ref {
+      display: grid; grid-template-columns: 210px 1fr; align-items: start; gap: 8px 40px;
+      padding: 24px 20px; border-radius: var(--radius);
+      transition: background .25s, opacity .7s var(--d, 0s), transform .7s var(--d, 0s);
+    }
+    .ref:hover, .ref:focus-visible { background: var(--tint); outline: none; }
+    .ref h3 { font-size: 1.35rem; }
+    .ref .used { color: var(--muted); font-size: .95rem; }
+    .ref .k { display: block; font-size: .72rem; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 4px; color: #000; opacity: .55; }
+    .ref .site { display: inline-block; margin-top: 12px; font-size: .85rem; font-weight: 500; }
+    .ref .site i { display: inline-block; font-style: normal; transition: transform .2s; }
+    .ref:hover .site i, .ref:focus-visible .site i { transform: translate(3px, -3px); }
+
+    @media (max-width: 860px) {
+      .ref-hero { padding: 48px 0 24px; }
+      .group { grid-template-columns: 1fr; gap: 20px; padding: 40px 0 8px; }
+      .g-head { position: static; }
+      .g-head p { max-width: 48ch; }
+      .list { margin-inline: -16px; }
+      .ref { grid-template-columns: 1fr; padding: 20px 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { .ref { transition: none; } .ref .site i { transition: none; } }
   </style>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">References</h1>
-    <a href="https://p5js.org/"><div class="grow"><h3> p5js </h3></div></a>
-    <a href="https://www.tensorflow.org/js"><div class="grow"><h3> Tensorflowjs </h3></div></a>
-    <a href="https://thecodingtrain.com/"><div class="grow"><h3> The Coding Train </h3></div></a>
-    <a href="https://www.youtube.com/channel/UCRZ_AsaKPrfe5Xp7maJjAPQ"><div class="grow"><h3> Jeff Thompson Youtube </h3></div></a>
-    <a href="https://natureofcode.com/"><div class="grow"><h3> Nature of Code Book </h3></div></a>
-    <a href="https://www.goodreads.com/book/show/38743103-generative-design"><div class="grow"><h3> Generative Desings Book </h3></div></a>
-    <a href="https://ml5js.org/"><div class="grow"><h3> ml5js </h3></div></a>
-    <a href="https://en.wikipedia.org/wiki/Main_Page"><div class="grow"><h3> Wikipidea </h3></div></a>
-    <a href="https://www.domestika.org/en"><div class="grow"><h3> Domestika </h3></div></a>
 
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a class="btn ghost small" href="../index.html">&larr; Home</a></li>
+      </ul>
+    </div>
+  </header>
 
-  
+  <section class="ref-hero">
+    <div class="wrap">
+      <div class="section-label">Sources</div>
+      <h1>References</h1>
+      <p class="lead">The libraries, tutorials and books behind this project, and what each one was used for.</p>
+    </div>
+  </section>
 
+  <div class="refs-page">
+    <div class="wrap">
+
+      <section class="group">
+        <div class="g-head">
+          <div class="section-label">01</div>
+          <h2>Libraries &amp; tools</h2>
+          <p>What the experiments are built with.</p>
+        </div>
+        <div class="list">
+          <a class="ref reveal" style="--d:.03s" href="https://p5js.org/" target="_blank" rel="noopener">
+            <h3>p5.js</h3>
+            <div><p class="used"><span class="k">Used for</span>Drawing, animation and sound in every sketch, running directly in the browser.</p>
+            <span class="site">p5js.org <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.06s" href="https://processing.org/" target="_blank" rel="noopener">
+            <h3>Processing</h3>
+            <div><p class="used"><span class="k">Used for</span>The creative-coding foundation that p5.js is built in accordance with.</p>
+            <span class="site">processing.org <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.09s" href="https://www.tensorflow.org/js" target="_blank" rel="noopener">
+            <h3>TensorFlow.js</h3>
+            <div><p class="used"><span class="k">Used for</span>Running machine-learning models in JavaScript for the webcam demos.</p>
+            <span class="site">tensorflow.org <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.12s" href="https://ml5js.org/" target="_blank" rel="noopener">
+            <h3>ml5.js</h3>
+            <div><p class="used"><span class="k">Used for</span>Ready-made models for object, hand and face detection.</p>
+            <span class="site">ml5js.org <i>&nearr;</i></span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="g-head">
+          <div class="section-label">02</div>
+          <h2>Tutorials</h2>
+          <p>Where the techniques were learned.</p>
+        </div>
+        <div class="list">
+          <a class="ref reveal" style="--d:.03s" href="https://thecodingtrain.com/" target="_blank" rel="noopener">
+            <h3>The Coding Train</h3>
+            <div><p class="used"><span class="k">Used for</span>Video lessons and examples for creative-coding techniques.</p>
+            <span class="site">thecodingtrain.com <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.06s" href="https://www.youtube.com/channel/UCRZ_AsaKPrfe5Xp7maJjAPQ" target="_blank" rel="noopener">
+            <h3>Jeff Thompson</h3>
+            <div><p class="used"><span class="k">Used for</span>Video tutorials and project references.</p>
+            <span class="site">youtube.com <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.09s" href="https://natureofcode.com/" target="_blank" rel="noopener">
+            <h3>The Nature of Code</h3>
+            <div><p class="used"><span class="k">Used for</span>Ideas for simulating natural systems with code, such as randomness and noise.</p>
+            <span class="site">natureofcode.com <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.12s" href="https://www.domestika.org/en" target="_blank" rel="noopener">
+            <h3>Domestika</h3>
+            <div><p class="used"><span class="k">Used for</span>Creative courses and design inspiration.</p>
+            <span class="site">domestika.org <i>&nearr;</i></span></div>
+          </a>
+        </div>
+      </section>
+
+      <section class="group">
+        <div class="g-head">
+          <div class="section-label">03</div>
+          <h2>Reading</h2>
+          <p>Background and further study.</p>
+        </div>
+        <div class="list">
+          <a class="ref reveal" style="--d:.03s" href="https://www.goodreads.com/book/show/38743103-generative-design" target="_blank" rel="noopener">
+            <h3>Generative Design</h3>
+            <div><p class="used"><span class="k">Used for</span>A book on code-based visual design, used as reference for the overall approach.</p>
+            <span class="site">goodreads.com <i>&nearr;</i></span></div>
+          </a>
+          <a class="ref reveal" style="--d:.06s" href="https://en.wikipedia.org/wiki/Main_Page" target="_blank" rel="noopener">
+            <h3>Wikipedia</h3>
+            <div><p class="used"><span class="k">Used for</span>Background material for the definitions in each section, such as digital images and audio.</p>
+            <span class="site">wikipedia.org <i>&nearr;</i></span></div>
+          </a>
+        </div>
+      </section>
+
+    </div>
   </div>
-</body>
 
+  <footer style="margin-top:32px">
+    <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
+  </footer>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: .12 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
+</body>
 </html>

@@ -1,89 +1,121 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Fourier Transformation</title>
-
+  <meta name="theme-color" content="#ffffff">
+  <title>Fourier Transformation · Generative Designs</title>
+  <meta name="description" content="Explore a selected musical track through a live frequency spectrum, waveform and circular visualisation.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/fourier-transformation.js"></script>
-  <script src="../assets/js/helpers.js"></script>
-</head> 
+</head>
 <body>
-  
-  
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Fourier Transformation</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> Fast Fourier Transformation (FFT) is a concept
-         used to analyze individual audio frequencies in 
-         a sound data and isolates them  within a waveform
-          and it is pictorially represented based on a sound 
-          bars and a waveform.</p>
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#sound">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Frequency values are mapped in to
-         the range of the height and position of 
-         the rectangles in the sound bars. Diffrent frequency 
-         values are also mapped to a specific vector to draw 
-         the waveform. Wait 10s After change is pressed </p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#sound">Sound manipulation</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Fourier Transformation</span>
+      </nav>
+      <h1>Fourier Transformation</h1>
+      <p class="lead">Explore a selected musical track through a live frequency spectrum, waveform and circular visualisation.</p>
+      <div class="tags">
+        <span class="tag">Sound manipulation</span>
+        <span class="tag">p5.sound · FFT</span>
+        <span class="tag live"><i></i>Track selector + audio</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">waveform( )</span> -  computes amplitude values along the time domain.</p>
-      <p><span class="fname">analyze( )</span> - amplitude values along the frequency domain.Frequencies from the low to the high</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Fourier Transformation sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"><div class="control-panel" aria-label="Audio track controls">
+        <label for="mtype">Track
+          <select id="mtype" name="mtype">
+            <option value="v" selected>Violin</option>
+            <option value="p">Piano</option>
+            <option value="s">Saxophone</option>
+            <option value="f">Flute</option>
+          </select>
+        </label>
+        <button type="button" onclick="changeTrack()">Change track</button>
+        <button type="button" class="secondary" onclick="togglePlay()">Play / pause</button>
+      </div></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Track selector + audio</b><span>Interaction</span></div>
+        <div class="fact"><b>FFT + waveform</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Choose a track and select Change, then click the canvas to start or pause playback. Track changes may take a few seconds to load.</p>
     </div>
+  </section>
 
-    <select name="mtype" id="mtype">
-      <option value="v" selected>Violin</option>
-      <option value="p">Piano</option>
-      <option value="s">Saxaphone</option>
-      <option value="f">Flute</option>
-    </select>
-    <button id="btn" onclick=changeTrack()>Change</button>
-    <button id="btn" style="color:#ffffff; background-color: rgb(231, 65, 65);"
-     onclick=togglePlay()>Pause/Play</button>
-    <style>
-      #mtype{
-        color: white;
-        background-color: #2d2e2e;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        font-size: 20px;
-        width: 15vw;
-        height: 3vw;
-        border-radius: 5px;
-        padding-left:1vw;
-      }
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Choose a bundled music track and explore its changing spectrum, waveform and circular audio visualisation.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>p5.FFT analyses the audio in both the frequency and time domains. Frequency values drive the spectrum bars, while waveform samples are drawn as curves.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">waveform( )</code> - computes amplitude values along the time domain.</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">analyze( )</code> - amplitude values along the frequency domain.Frequencies from the low to the high</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-      #btn{
-        font-size:20px ;
-        color: white;
-        background-color: #2d2e2e;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: fit-content;
-        padding-left: 1vw;
-        padding-right:1vw;
-        height: 3vw;
-        border-radius: 5px;
-        margin-top: 1vw;
-
-      }
-    </style>
-
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="oscillator.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Oscillator</strong>
+      </a>
+      <a class="next" href="synthesizer.html">
+        <small>Next</small>
+        <strong>Synthesizer <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

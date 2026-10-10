@@ -14,13 +14,11 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/experiment.css">
-  <script src="../assets/js/mount-sketch.js"></script>
-
   <script src="../assets/vendor/p5/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
-  <!-- <script src="../addons/p5.sound.js"></script> -->
-  <script src="../assets/js/sketches/infinite-pattern-generator.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/sketches/infinite-pattern-generator.js"></script>
 </head>
 
 <body>
@@ -56,11 +54,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       <div class="facts">
+        <div class="fact"><b>600 &times; 600</b><span>Canvas</span></div>
         <div class="fact"><b>1 fps</b><span>Frame rate</span></div>
         <div class="fact"><b>3</b><span>Randomised properties</span></div>
-        <div class="fact"><b>2</b><span>Helper functions</span></div>
       </div>
+      <p class="interaction-note"><strong>Try it:</strong> Watch the composition refresh once per second; each pass varies its shapes, sizes and colours.</p>
     </div>
   </section>
 
@@ -83,12 +83,20 @@
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <span class="fname">Poly( )</span>
+            <span class="fname">poly( )</span>
             <p>User-defined function that draws a polygon with N sides.</p>
           </div>
           <div class="fn">
             <span class="fname">pointOnCircle( )</span>
             <p>Calculates the coordinates of a point on a given circle.</p>
+          </div>
+          <div class="fn">
+            <span class="fname">getRandomFromPalette( )</span>
+            <p>Selects a colour from the sketch's palette.</p>
+          </div>
+          <div class="fn">
+            <span class="fname">randomSelectTwo( )</span>
+            <p>Chooses between two alternatives using a random value.</p>
           </div>
         </div>
       </div>
@@ -111,17 +119,7 @@
   <footer>
     <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
   </footer>
-
-  <script>
-    (function () {
-      var els = document.querySelectorAll('.reveal');
-      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
-      var io = new IntersectionObserver(function (entries) {
-        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
-      }, { threshold: .12 });
-      els.forEach(function (e) { io.observe(e); });
-    })();
-  </script>
+  <script src="../assets/js/experiment-page.js"></script>
 </body>
 
 </html>

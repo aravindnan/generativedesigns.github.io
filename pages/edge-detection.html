@@ -1,47 +1,109 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <meta name="theme-color" content="#ffffff">
+  <title>Edge Detection · Generative Designs</title>
+  <meta name="description" content="Compare neighbouring pixel colours in a source image to reveal strong changes along its edges.">
   <link rel="icon" href="../assets/icons/favicon.svg">
-  <title>Edge Detection</title>
-  
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/edge-detection.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Edge Detection</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> Manually finding edges in an image using RGB values of pixels in an image</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#image">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> The average of the RGB values of each pixel is 
-        reduced by the pixel on its right side. That is if
-         the color is same,there is no edge but if there is a 
-         change in the value it would create an edge </p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#image">Image manipulation</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Edge Detection</span>
+      </nav>
+      <h1>Edge Detection</h1>
+      <p class="lead">Compare neighbouring pixel colours in a source image to reveal strong changes along its edges.</p>
+      <div class="tags">
+        <span class="tag">Image manipulation</span>
+        <span class="tag">p5.js · pixels</span>
+        <span class="tag live"><i></i>Image</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">image( )</span> - t0 display an image in the canvas at a given location</p>
-      <p><span class="fname">updatePixels( )</span> - to change the pixel values to a new value or update to a new value</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Edge Detection sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Image</b><span>Interaction</span></div>
+        <div class="fact"><b>Neighbour comparison</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> The sketch processes the bundled image automatically.</p>
     </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Reveal image edges by comparing the colour of each pixel with its neighbour.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>The sketch calculates the difference between average RGB intensity at adjacent pixels and writes that difference as a grayscale value in a new image.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">image( )</code> - t0 display an image in the canvas at a given location</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">updatePixels( )</code> - to change the pixel values to a new value or update to a new value</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="resolution.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Resolution</strong>
+      </a>
+      <a class="next" href="raster-image.html">
+        <small>Next</small>
+        <strong>Raster Image <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

@@ -1,80 +1,114 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Binary Search</title>
-  
+  <meta name="theme-color" content="#ffffff">
+  <title>Binary Search · Generative Designs</title>
+  <meta name="description" content="Follow binary search as it repeatedly halves a sorted set to find a chosen value.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/binary-search.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Binary Search</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> Visual representation of the binary search algorithm in arrays. 
-         Based on user input search value.</p> 
-        <p> First Set a value -> search -> reset </p>         
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#principles">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> A random array is created with elements 
-        in it . User input is taken for the search 
-        value and search is done by the binary search
-         algorithm and result is shown </p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#principles">Programming principles</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Binary Search</span>
+      </nav>
+      <h1>Binary Search</h1>
+      <p class="lead">Follow binary search as it repeatedly halves a sorted set to find a chosen value.</p>
+      <div class="tags">
+        <span class="tag">Programming principles</span>
+        <span class="tag">p5.js</span>
+        <span class="tag live"><i></i>Search input + buttons</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">bbox( )</span> - to display each element of the array with different dimension,color and position </p>
-      <p><span class="fname">bsearch( )</span> - to perform the binary search algorithm and call bbox based on position and color</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Binary Search sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"><div class="control-panel" aria-label="Binary search controls">
+        <label for="inp">Search value
+          <input id="inp" type="number" inputmode="numeric">
+        </label>
+        <button type="button" onclick="getVal()">Set value</button>
+      </div></div>
+
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Search input + buttons</b><span>Interaction</span></div>
+        <div class="fact"><b>29 sorted values</b><span>Data set</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Enter a value and choose Set value, then use Search Now. Reset starts a fresh search.</p>
     </div>
-    <style>
-      #inp{
-        height: 3vw;
-        width:5vw;
-        font-size: 20px;
-        padding-top: 1vw;
-        padding-bottom: 1vw;
-        background-color: white;
-        border: 3px solid #2d2e2e;
-        border-radius: 5px;
-        margin-top: -1vw;
-        font-weight: bold;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-      #btn{
-        font-size:20px ;
-        color: white;
-        background-color: #2d2e2e;
-        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-        width: fit-content;
-        padding-left: 1vw;
-        padding-right:1vw;
-        height: 3vw;
-        border-radius: 5px;
-        margin-top: -1vw;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      }
-    </style>
+  </section>
 
-<h2 style="color: #2d2e2e; margin-top: -0.04vw;"> Enter Search Value</h2>
-<input type="number" id="inp" >
-<button id="btn" onclick=getVal()>Set Value</button>
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Enter a value and follow binary search through a sorted array of 29 unique values.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>The sketch compares the target with the middle value, then discards the half that cannot contain it. It repeats the comparison until the value is found or the range is empty.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">bbox( )</code> - to display each element of the array with different dimension,color and position</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">bsearch( )</code> - to perform the binary search algorithm and call bbox based on position and color</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="circular-queue.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Circular Queue</strong>
+      </a>
+      <a class="next" href="bubble-sort.html">
+        <small>Next</small>
+        <strong>Bubble Sort <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

@@ -1,54 +1,109 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Stack </title>
- 
-  
+  <meta name="theme-color" content="#ffffff">
+  <title>Stack · Generative Designs</title>
+  <meta name="description" content="A visual stack demonstrates last-in, first-out behaviour as elements are added and removed.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/stack.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Stack</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> An array stack data structure 
-        is visually represented here using 
-        3D cuboids as stack elements. With
-         push and pop functionalities based on user input</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#principles">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Each time the user inputs ,the function 
-        checks the input and based on it the push 
-        or pop is performed and at each frame the 
-        stack is reprinted based on the number of elements in stack</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#principles">Programming principles</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Stack</span>
+      </nav>
+      <h1>Stack</h1>
+      <p class="lead">A visual stack demonstrates last-in, first-out behaviour as elements are added and removed.</p>
+      <div class="tags">
+        <span class="tag">Programming principles</span>
+        <span class="tag">p5.js · WEBGL</span>
+        <span class="tag live"><i></i>Keyboard</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">action( )</span> - user defined function to push and pop elemets in stack internally based on key input</p>
-      <p><span class="fname">box( )</span> - library function to display a cuboid in a particular locaiton</p>
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Stack sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600 · WEBGL</b><span>Canvas</span></div>
+        <div class="fact"><b>Keyboard</b><span>Interaction</span></div>
+        <div class="fact"><b>LIFO data structure</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Press A to push an element onto the stack; press D to pop the top element.</p>
     </div>
-    <h2 style="color: #2d2e2e; margin-top: -0.4vw;">Press <span class="fname">'A'</span> to Push element into Stack</h3>
-    <h2 style="color: #2d2e2e;margin-top: -0.4vw;">Press <span class="fname">'D'</span> to Pop element out of Stack</h3>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>A 3D stack demonstrates last-in, first-out behaviour as elements are pushed on and popped off.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Press A to push a random value onto the array and D to remove its top value. The stack is redrawn as cuboids; attempts beyond its limit show overflow or underflow.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">action( )</code> - user defined function to push and pop elemets in stack internally based on key input</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">box( )</code> - library function to display a cuboid in a particular locaiton</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
 
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="../index.html#principles">
+        <small>Collection</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Programming principles</strong>
+      </a>
+      <a class="next" href="circular-queue.html">
+        <small>Next</small>
+        <strong>Circular Queue <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>

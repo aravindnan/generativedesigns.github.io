@@ -1,49 +1,112 @@
-<html>
-<html lang="">
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-
-  <title>Nodes in free space </title>
- 
-   
+  <meta name="theme-color" content="#ffffff">
+  <title>Nodes in Free Space · Generative Designs</title>
+  <meta name="description" content="A field of moving nodes explores simple motion and spatial relationships in a bounded canvas.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.classList.add('js');</script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
+  <script src="../assets/js/mount-sketch.js"></script>
   <script src="../assets/js/sketches/nodes-in-free-space.js"></script>
-  <script src="../assets/js/helpers.js"></script>
 </head>
-
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Nodes in free Space</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> An Animation describing the movement of nodes moving in a confined space randomly</p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#misc">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Each node position is incremented in each frame to 
-        achieve the animation and the distance between the
-         nodes are mapped to a quantity to control the linewidth between  the nodes</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#misc">Miscellaneous</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Nodes in Free Space</span>
+      </nav>
+      <h1>Nodes in Free Space</h1>
+      <p class="lead">A field of moving nodes explores simple motion and spatial relationships in a bounded canvas.</p>
+      <div class="tags">
+        <span class="tag">Miscellaneous</span>
+        <span class="tag">p5.js</span>
+        <span class="tag live"><i></i>Automatic</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">update( )</span> - to periodically change the  position of each node </p>
-      <p><span class="fname">getDistance( )</span> - to calculate the distance between each node</p>
-      <p><span class="fname">draw( )</span> - to display each node in each frame</p>
-
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main aria-label="Nodes in Free Space sketch"></main>
+      <div class="sketch-controls" id="sketch-controls"></div>
       
+      <div class="facts">
+        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
+        <div class="fact"><b>Automatic</b><span>Interaction</span></div>
+        <div class="fact"><b>Animated nodes</b><span>Approach</span></div>
+      </div>
+      <p class="interaction-note"><strong>Try it:</strong> Watch the nodes move through the canvas.</p>
     </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <article class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Watch moving nodes form temporary connections as they travel around a bounded field.</p>
+        </article>
+        <article class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Each node moves with a small velocity and bounces off the canvas edges. Nodes within 200 pixels of one another are connected by lines.</p>
+        </article>
+        <article class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <p><code class="fname">update( )</code> - to periodically change the position of each node</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">getDistance( )</code> - to calculate the distance between each node</p>
+          </div>
+          <div class="fn">
+            <p><code class="fname">draw( )</code> - to display each node in each frame</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="../index.html#misc">
+        <small>Collection</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Miscellaneous</strong>
+      </a>
+      <a class="next" href="noise-representation-2d.html">
+        <small>Next</small>
+        <strong>2D Noise <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
-</body>
 
+  <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+  <script src="../assets/js/helpers.js"></script>
+  <script src="../assets/js/experiment-page.js"></script>
+</body>
 </html>
