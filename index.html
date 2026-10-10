@@ -1,321 +1,411 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Generative Designs</title>
-        <link rel="stylesheet" href="assets/css/site.css">
-        <link rel="icon" href="assets/icons/favicon.svg">
-        <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
-        <script src="https://cdn.tailwindcss.com"></script>
-        <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
-        <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
-        <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
-        <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script> -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <title>Generative Designs Using Programming</title>
+  <meta name="description" content="25 browser-based experiments in generative art, sound, algorithms, image processing and machine learning, built with p5.js and ml5.js.">
+  <link rel="icon" href="assets/icons/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 
-    </head>
-    <body>
-        <!--Heading-->
-        <h1 id="GDUP">Generative Designs Using Programming</h1>
-        
-          <!--Introduction-->
+  <style>
+    :root {
+      --bg: #fff;
+      --bg-soft: #f5f5f5;
+      --card: transparent;
+      --line: rgba(0, 0, 0, .14);
+      --line-strong: rgba(0, 0, 0, .75);
+      --text: #000;
+      --muted: #525252;
+      --radius: 4px;
+      --maxw: 1280px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 76px; }
+    body {
+      background: var(--bg); color: var(--text);
+      font-family: "Inter", system-ui, sans-serif; line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3 { font-family: "Space Grotesk", "Inter", sans-serif; line-height: 1.12; letter-spacing: -.025em; font-weight: 600; }
+    a { color: inherit; text-decoration: none; }
+    ::selection { background: #000; color: #fff; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 clamp(24px, 6vw, 96px); }
 
-        <div class="intro">
-            <h1 style="text-align: center;margin-bottom: 3vw; font-size: 3vw;">Generative Designs</h1>
-            <p>Aesthetics or the sense of art has always been and always
-                 will be a way of life of humans. The expression of creativity
-                  and emotions through pictures and videos is an industry of 
-                  its own. Technology ,let alone computer science has paved a  
-                  sustainable way to create art with softwares providing to create
-                   Animations, Visual Effects(VFX),Computer Generated Imagery(CGI) 
-                   and many more</p>
-                
-                <p>In this project we are exploring how we can implement programming
-                   concepts to create artworks , illustrations and animations inspired
-                    from real world images, user input and computer generated randomness.
-                    This technology is the fundamental concept for computer generated data 
-                    visualization which is widely used in many areas of research.</p>
+    /* Nav */
+    .nav { position: sticky; top: 0; z-index: 50; background: rgba(255, 255, 255, .85); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
+    .nav .wrap { display: flex; align-items: center; justify-content: space-between; height: 62px; }
+    .brand { display: flex; align-items: center; gap: 10px; font-family: "Space Grotesk", sans-serif; font-weight: 600; }
+    .brand img { width: 24px; height: 24px; filter: grayscale(1); }
+    .nav ul { display: flex; gap: 22px; list-style: none; }
+    .nav ul a { font-size: .88rem; color: var(--muted); transition: color .2s; }
+    .nav ul a:hover { color: #000; }
 
-                <p>In this project we are tring to create something from the domain of
-                    computer graphics which can be implemented in the web browser with the help 
-                    of <b>HTML</b> and a few <b>JavaScript</b> libraries mentioned above.</p>
-                    
-                <p><b>Processing</b> is a foundation which helps artists and engineers to 
-                   provide functionalities to express their creativity from scratch using its programming 
-                   environment.<b> p5js</b> is a javascript library which is built in accordance with processing 
-                to make creative coding available in the browser.
-                </p>    
+    /* Hero */
+    .hero { position: relative; overflow: hidden; min-height: 88vh; display: flex; align-items: center; padding: 0; }
+    #heroCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .hero::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(ellipse at 25% 45%, transparent 0%, #fff 85%); }
+    .hero .wrap { position: relative; z-index: 2; padding-top: 80px; padding-bottom: 80px; }
+    .eyebrow { display: inline-block; font-size: .78rem; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; padding: 6px 14px; background: var(--bg-soft); border-radius: 4px; color: var(--muted); }
+    .hero h1 { font-size: clamp(2.5rem, 6.6vw, 5.2rem); margin: 22px 0 20px; max-width: 14ch; }
+    .hero h1 span { color: transparent; -webkit-text-stroke: 1.5px #000; }
+    .hero p.lead { max-width: 58ch; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.18rem); }
+    .cta { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 13px 24px; border-radius: 4px; font-weight: 500; font-size: .95rem; border: 1px solid #000; transition: background .2s, color .2s; }
+    .btn.primary { background: #000; color: #fff; }
+    .btn.primary:hover { background: #fff; color: #000; }
+    .btn.ghost:hover { background: #000; color: #fff; }
+    .stats { display: flex; flex-wrap: wrap; gap: 44px; margin-top: 56px; }
+        .stat b { display: block; font-family: "Space Grotesk", sans-serif; font-size: 1.9rem; }
+    .stat span { font-size: .82rem; color: var(--muted); }
+
+    /* Sections */
+    section { padding: 92px 0; }
+    .alt, .about { background: var(--bg-soft); }
+    .about-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: start; }
+    .section-label { font-size: .78rem; letter-spacing: .16em; text-transform: uppercase; color: var(--muted); font-weight: 500; margin-bottom: 14px; }
+    h2 { font-size: clamp(1.8rem, 3.6vw, 2.8rem); margin-bottom: 18px; }
+    .about p { color: var(--muted); margin-bottom: 16px; }
+    .about p b { color: #000; font-weight: 600; }
+    .field { position: relative; align-self: center; width: 100%; height: clamp(300px, 34vw, 420px); }
+    .g-dots i { position: absolute; border-radius: 1px; background: #000; transition: left var(--t, 3s) ease-in-out, top var(--t, 3s) ease-in-out; }
+
+    .module-head { max-width: 720px; margin-bottom: 36px; }
+    .module-head p { color: var(--muted); }
+    .module-head .num { font-family: "Space Grotesk", sans-serif; color: var(--muted); font-size: .9rem; margin-bottom: 10px; display: block; }
+    .grid { display: flex; flex-wrap: wrap; justify-content: flex-start; gap: 16px; }
+    .grid .card { flex: 0 1 calc(25% - 12px); min-width: 220px; }
+    .card { display: flex; flex-direction: column; gap: 14px; padding: 22px; border-radius: var(--radius); background: var(--card); transition: transform .25s, background .25s, opacity .7s var(--d, 0s); }
+    .card:hover, .card:focus-visible { transform: translateY(-4px); background: rgba(0, 0, 0, .035); outline: none; }
+    .icon { width: 56px; height: 56px; padding: 11px; border-radius: 4px; background: #fff; }
+    .icon img { width: 100%; height: 100%; object-fit: contain; display: block; filter: grayscale(1); }
+    .card h3 { font-size: 1.15rem; }
+    .card p { font-size: .9rem; color: var(--muted); flex: 1; }
+    .card .go { font-size: .82rem; font-weight: 500; }
+    .card .go i { display: inline-block; font-style: normal; transition: transform .2s; }
+    .card:hover .go i { transform: translateX(5px); }
+    .mic-note { font-size: .85rem; color: var(--muted); margin-top: 18px; padding: 12px 16px; background: rgba(0, 0, 0, .05); border-radius: 4px; }
+
+    /* Tools */
+    .tools { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 16px; }
+    .tool { display: block; padding: 26px; border-radius: var(--radius); background: var(--card); transition: transform .25s, background .25s, opacity .7s var(--d, 0s); }
+    .tool:hover { transform: translateY(-4px); background: rgba(0, 0, 0, .035); }
+    .tool img { width: 56px; height: 56px; object-fit: contain; margin-bottom: 16px; filter: grayscale(1); }
+    .tool h3 { font-size: 1.3rem; margin-bottom: 8px; }
+    .tool p { font-size: .9rem; color: var(--muted); }
+
+    /* References */
+    .refs { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px; padding: 40px; border-radius: 4px; background: var(--bg-soft); transition: background .25s; }
+    .refs:hover { background: #ebebeb; }
+    .refs h2 { margin-bottom: 6px; font-size: 1.8rem; }
+    .refs p { color: var(--muted); }
+    footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-size: .85rem; }
+
+    .reveal { opacity: 0; transform: translateY(18px); transition: opacity .7s var(--d, 0s), transform .7s var(--d, 0s); }
+    .reveal.in { opacity: 1; transform: none; }
+
+    @media (max-width: 860px) {
+      .about-grid { grid-template-columns: 1fr; gap: 36px; }
+      .nav ul { display: none; }
+      section { padding: 64px 0; }
+      .refs { padding: 28px; }
+      .stats { gap: 28px; }
+    }
+    @media (max-width: 640px) {
+      .grid .card { flex-basis: calc(50% - 8px); min-width: 0; padding: 18px; }
+      .card p { font-size: .85rem; }
+      .field { height: 260px; }
+    }
+    @media (max-width: 400px) {
+      .grid .card { flex-basis: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .reveal { opacity: 1; transform: none; transition: none; }
+      .card, .tool, .btn { transition: none; }
+      .field i { transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="#top"><img src="assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#tools">Tools</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <canvas id="heroCanvas" aria-hidden="true"></canvas>
+      <div class="wrap">
+        <span class="eyebrow">Creative coding in the browser</span>
+        <h1>Generative Designs <span>Using Programming</span></h1>
+        <p class="lead">
+          Art, sound and data brought to life with nothing but code. Explore 25 interactive
+          experiments built with HTML, JavaScript, p5.js and ml5.js, from random patterns and
+          audio visualizers to sorting algorithms and real-time webcam machine learning.
+        </p>
+        <div class="cta">
+          <a class="btn primary" href="#randomness">Start exploring &rarr;</a>
+          <a class="btn ghost" href="#about">About the project</a>
         </div>
-
-        <!-- Based On Randomness-->
-        <div class="modules">
-            <h1 style="text-align:center;font-size: 2.5vw;">System Randomness</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;"> A random sequence of events, symbols or steps often
-                 has no order and does not follow an intelligible pattern or combination.
-                  Randomness applies to concepts of chance, probability, and information entropy
-                  .System randomness is provided by using a random function 
-                and is used as the key element in the following graphical illustrations</p>
-           
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    <div class="w-[300px] h-[200px]  p-5 item-center cursor-pointer hover:border hover:border-2  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/infinite-pattern-generator.html';">
-                        <h3 style="font-size: 1.7vw;">Infinte Pattern</h3>
-                        <img class="mx-auto  h-16 w-16" src="assets/icons/infpattern.svg"class="tpic">
-                    </div> 
-                    <div class="w-[300px] h-[200px]  p-5 flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/grid-pattern-generator.html';">
-                        <h3 style="font-size: 1.7vw;">Grid Pattern</h3>
-                        <img class="mx-auto  h-16 w-16" src="assets/icons/gridpattern.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px]  p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/spiral.html';">
-                        <h3 style="font-size: 1.7vw;">3D Spiral</h3>
-                        <img class="mx-auto  h-16 w-16" src="assets/icons/3dspiral.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px]  p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/rotation.html';">
-                        <h3 style="font-size: 1.7vw;">3D Rotation</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/3drender.svg"class="tpic">
-                    </div>
-            </div>
+        <div class="stats">
+          <div class="stat"><b>25</b><span>Experiments</span></div>
+          <div class="stat"><b>6</b><span>Collections</span></div>
+          <div class="stat"><b>4</b><span>Libraries</span></div>
         </div>
-        <div class="division"></div>
+      </div>
+    </section>
 
-        <!--Based on sound-->
-        <div class="modules">
-            <h1 style="text-align:center;font-size: 2.5vw;">Sound Manipulation</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;"> 
-                Digital audio is a representation of sound recorded in, or converted into, 
-                digital form. In digital audio, the sound wave of the audio signal is typically 
-                encoded as numerical samples in a continuous sequence.
-                 System  sound is achieved by a sound library provided by p5
-                Device microphones are to be enable to perform the following </p>
-          
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/amplitude-reader.html';">
-                        <h3 style="font-size: 1.7vw;">Amplitude</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/amplitude.svg"class="tpic">
-                    </div>
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/oscillator.html';">
-                        <h3 style="font-size: 1.7vw;">Oscillator</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/oscillator.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/fourier-transformation.html';">
-                        <h3 style="font-size: 1.7vw;">FFT</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/fft.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/synthesizer.html';">
-                        <h3 style="font-size: 1.7vw;">Synthesizer</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/synthesizer.svg"class="tpic">
-                    </div>
-                </div>
+    <section class="about" id="about">
+      <div class="wrap about-grid">
+        <div class="reveal">
+          <div class="section-label">About the project</div>
+          <h2>Where code meets creativity</h2>
+          <p>
+            Art has always been part of being human, and technology has given it new tools:
+            animation, visual effects and computer-generated imagery are now industries of their own.
+            This project asks a simple question: <b>what can we create when programming concepts
+            become the paintbrush?</b>
+          </p>
+          <p>
+            Each experiment draws on real-world images, live user input, or computer-generated
+            randomness to produce artworks, illustrations and animations right in your browser.
+            The same ideas sit at the heart of modern data visualization, which is widely used across research.
+          </p>
+          <p>
+            <b>Processing</b> is a long-standing foundation that lets artists and engineers express
+            ideas through code. <b>p5.js</b> brings that philosophy to the web, making creative coding
+            available to anyone with a browser.
+          </p>
         </div>
-        <div class="division"></div>
+        <div class="field g-dots reveal" aria-hidden="true"></div>
+      </div>
+    </section>
 
-        <!--Based on Programming Principles-->
-        <div class="modules">
-            <h1 style="text-align:center;font-size: 2.5vw;">Basic Programming Principles</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;"> 
-                Data structures being a fundamental pillar in programming here are implementation
-            of a stack and circular queue using p5js followed by a visual representations 
-            algorithm to perform a binary search on and given array and to perform a bubble sort.</p>
-           
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/stack.html';">
-                        <h3 style="font-size: 1.7vw;">Stack</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/stack.svg"class="tpic">
+    <div id="collections"></div>
 
-                    </div>
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/circular-queue.html';">
-                        <h3 style="font-size: 1.7vw;">Queue</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/queue.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/binary-search.html';">
-                        <h3 style="font-size: 1.7vw;">Binary Search</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/bsearch.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/bubble-sort.html';">
-                        <h3 style="font-size: 1.7vw;">Bubble Sort</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/bsort.svg"class="tpic">
-                    </div>
-                </div>
-           
+    <section id="tools">
+      <div class="wrap">
+        <div class="module-head reveal">
+          <div class="section-label">Under the hood</div>
+          <h2>Tools &amp; libraries</h2>
+          <p>The open-source projects that make these experiments possible.</p>
         </div>
-        <div class="division"></div>
-
-        <!--Based on image-->
-        <div class="modules">
-            <h1 style="text-align:center;font-size: 2.5vw;">Image Manipulation</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;">
-                A digital image is an image composed of picture elements, also known as pixels, 
-                each with finite, discrete quantities of numeric representation for its intensity
-                 or gray level that is an output from its two-dimensional functions fed as input by
-                  its spatial coordinates denoted with x, y on the x-axis and y-axis, respectively.
-                   Depending on whether the image resolution is fixed, it may be of vector or raster type. 
-                   By itself, the term "digital image" usually refers to raster images or bitmapped images </p>
-           
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/resolution.html';">
-                        <h3 style="font-size: 1.7vw;">Resolution</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/resolution.svg"class="tpic">
-                    </div>
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/edge-detection.html';">
-                        <h3 style="font-size: 1.7vw;">Edge Detect</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/edge.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/raster-image.html';">
-                        <h3 style="font-size: 1.7vw;">Raster Image</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/raster.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/video-processing.html';">
-                        <h3 style="font-size: 1.7vw;">Video Process </h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/video.svg"class="tpic">
-                    </div>
-                </div>
-            
+        <div class="tools">
+          <a class="tool reveal" href="https://www.processing.org/" target="_blank" rel="noopener">
+            <img src="assets/images/processing.png" alt="Processing logo">
+            <h3>Processing</h3>
+            <p>A free graphical library and IDE built for the electronic arts, new media art and visual design communities, designed to teach programming in a visual context.</p>
+          </a>
+          <a class="tool reveal" href="https://www.p5js.org/" target="_blank" rel="noopener">
+            <img src="assets/images/p5js.png" alt="p5.js logo">
+            <h3>p5.js</h3>
+            <p>A JavaScript library for creative coding that makes programming accessible and inclusive for artists, designers, educators and beginners. Free and open source.</p>
+          </a>
+          <a class="tool reveal" href="https://www.tensorflow.org/" target="_blank" rel="noopener">
+            <img src="assets/images/tensorflow.png" alt="TensorFlow logo">
+            <h3>TensorFlow</h3>
+            <p>An end-to-end open-source machine learning platform with a flexible ecosystem of tools, libraries and community resources.</p>
+          </a>
+          <a class="tool reveal" href="https://ml5js.org/" target="_blank" rel="noopener">
+            <img src="assets/images/ml5js.png" alt="ml5.js logo">
+            <h3>ml5.js</h3>
+            <p>Friendly machine learning for the web, with pre-trained models for pose detection, text generation, style transfer, music and pitch detection.</p>
+          </a>
         </div>
-        <div class="division"></div>
+      </div>
+    </section>
 
-        <!--Based on ML-->
-        <div class="modules">
-            <h1 style="text-align:center ;font-size: 2.5vw;">Basic ML Libraries</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;"> 
-                Machine learning is an application of artificial intelligence (AI) that 
-                provides systems the ability to automatically learn and improve from 
-                experience without being explicitly programmed. Machine learning focuses
-                 on the development of computer programs that can access data and use it 
-                 to learn for themselves. Here a few ML libraries are used to render realtime
-                  webcam data</p>
-            
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/object-detection.html';">
-                        <h3 style="font-size: 1.7vw;">Object Detection</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/object.svg"class="tpic">
-                    </div>
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/hand-position.html';">
-                        <h3 style="font-size: 1.7vw;">Hand Position</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/hand.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/face-tracker.html';">
-                        <h3 style="font-size: 1.7vw;">Face Detection</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/face.svg"class="tpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/weather.html';">
-                        <h3 style="font-size: 1.7vw;">Weather API</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/weather.svg"class="tpic">
-                    </div>
-              
-            </div>
-        </div>
-        <div class="division"></div>
-
-        <!--Misc stuff-->
-        <div class="modules">
-            <h1 style="text-align:center ;font-size: 2.5vw;">Miscellaneous</h1>
-            <p style="text-align: center;margin-left: 3vw;margin-bottom: 2vw;"> 
-            A few programmes which do not come under the above classifications are
-             mentioned here,including a class implementation,the use of 2D perlin noise,
-             the visual application of recursion ,bezier curves in p5 and the implementation 
-             of gaussian random function</p>
-            
-                <div class="flex flex-row p-5 justify-around " style="text-align:center;">
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/nodes-in-free-space.html';" style="height: 10vw;">
-                        <h3 style="font-size: 1.7vw;">Nodes</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/nodes.svg"class="mtpic">
-                    </div>
-                    
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/noise-representation-2d.html';"style="height: 10vw;">
-                        <h3 style="font-size: 1.7vw;">Noise</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/noise.svg"class="mtpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/recursion.html';"style="height: 10vw;">
-                        <h3 style="font-size: 1.7vw;">Recursion</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/recursion.svg"class="mtpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/curves.html';"style="height: 10vw;">
-                        <h3 style="font-size: 1.7vw;">Curves</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/curves.svg"class="mtpic">
-                    </div>
-                    <div class="w-[300px] h-[200px] p-5  flex justify-center flex-col rounded-md cursor-pointer hover:border hover:border-2 " onclick="window.location.href='pages/gaussian.html';"style="height: 10vw;">
-                        <h3 style="font-size: 1.7vw;">Gaussian</h3>
-                        <img class="mx-auto h-16 w-16" src="assets/icons/gaussian.svg"class="mtpic">
-                    </div>
-            </div>
-        </div>
-
-        <div class="division"></div>
-
-        <h1 style="text-align:center;margin-bottom: 3vw;" >Tools and Libraries</h1>
-
-        <!--software Information-->
-        <div class="container-md" >
-            <div class="row" style="font-size: 1vw;">
-              <div class="col-sm-3">
-                  <img class="mx-auto h-16 w-16" src="assets/images/processing.png" alt="" class="pic" style="width: 6.5vw;height: 6.5vw;">
-                  <a href="https://www.processing.org/" style="text-decoration: none;">
-                  <div id="infobox">
-                      <h3 style="color:#0c6ad6;font-size: 2vw;font-weight: bolder;">Procesing</h3>
-                      <p>Processing is a free graphical library and integrated
-                           development environment built for the electronic arts,
-                            new media art, and visual design communities with the
-                             purpose of teaching non-programmers the fundamentals of 
-                             computer programming in a visual context. </p>    
-                  </div>
-                </a>
-              </div>
-              <div class="col-sm-3">
-                <img class="mx-auto h-16 w-16" src="assets/images/p5js.png" alt="" class="pic" style="width: 6.5vw;height: 6.5vw;">
-                <a href="https://www.p5js.org/" style="text-decoration: none;">
-                <div id="infobox" >
-                    <h3 style="color:#ED1F5E;font-size: 2vw; font-weight: bolder;">p5js</h3>
-                    <p>p5.js is a JavaScript library for creative coding, with a 
-                        focus on making coding accessible and inclusive for artists,
-                         designers, educators, beginners, and anyone else! p5.js is free 
-                         and open-source because we believe software, and the tools to learn 
-                         it,should be accessible</p>
-                </div>
-               </a>
-              </div>
-              <div class="col-sm-3">
-                  <img class="mx-auto h-16 w-16" src="assets/images/tensorflow.png" alt="" class="pic" style="width: 6.5vw;height: 6.5vw;">
-                  <a href="https://www.tensorflow.org/" style="text-decoration: none; ">
-                <div id="infobox">
-                    <h3 style="color:#E55B2D;font-size: 2vw;font-weight: bolder;">TensorFlow</h3>
-                    <p>TensorFlow is an end-to-end open source platform for machine learning.
-                         It has a comprehensive, flexible ecosystem of tools, libraries and 
-                         community resources that lets researchers push the state-of-the-art 
-                         in ML and developers easily build.</p>
-                  
-                </div>
-                </a>
-              </div>
-              <div class="col-sm-3">
-                <img class="mx-auto h-16 w-16" src="assets/images/ml5js.png" alt="" class="pic" style="width: 6.5vw;height: 6.5vw;">
-                <a href="https://ml5js.org/" style="text-decoration: none;">
-                    <div id="infobox">
-                        <h3 style="color:#A256FF;font-size: 2vw;font-weight: bolder;">ml5js</h3>
-                        <p>ml5.js aims to make machine learning approachable for a broad audience of
-                             artists, creative coders, and students. It consists of pre-trained models 
-                             for detecting human poses, generating text, styling an image with another,
-                              composing music, pitch detection and many more</p>
-                        
-                    </div>
-                </a>
-              </div>
-            </div>
+    <section style="padding-top:0">
+      <div class="wrap">
+        <a class="refs reveal" href="pages/references.html">
+          <div>
+            <h2>References</h2>
+            <p>Sources, documentation and further reading used throughout the project.</p>
           </div>
+          <span class="btn primary">View references &rarr;</span>
+        </a>
+      </div>
+    </section>
+  </main>
 
+  <footer>
+    <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
+  </footer>
 
-        <!--About project-->
-        <div class="References" onclick="window.location.href='pages/references.html';" style="cursor: pointer;">
-            <h1 style="text-align: center;margin-bottom: 1vw; font-size: 2.5vw;">References</h1>
-            </ul>
+  <script>
+    const collections = [
+      {
+        id: "randomness", title: "System randomness",
+        intro: "A random sequence has no intelligible order, yet chance, probability and entropy can produce striking structure. Here a simple random function is the key ingredient behind every illustration.",
+        items: [
+          ["Infinite Pattern", "infinite-pattern-generator", "infpattern", "Endlessly evolving patterns drawn from random choices."],
+          ["Grid Pattern", "grid-pattern-generator", "gridpattern", "Order from chaos: randomized tiles arranged on a grid."],
+          ["3D Spiral", "spiral", "3dspiral", "A spiral rendered in three dimensions with random variation."],
+          ["3D Rotation", "rotation", "3drender", "Shapes rotating in 3D space, rendered live in the browser."]
+        ]
+      },
+      {
+        id: "sound", title: "Sound manipulation", alt: true,
+        intro: "Digital audio encodes a sound wave as a continuous sequence of numerical samples. Using the p5 sound library, these experiments turn audio into motion and music.",
+        note: "These experiments use your microphone, so please allow access when prompted.",
+        items: [
+          ["Amplitude", "amplitude-reader", "amplitude", "Visualize the loudness of incoming sound in real time."],
+          ["Oscillator", "oscillator", "oscillator", "Generate and shape pure tones with a software oscillator."],
+          ["FFT", "fourier-transformation", "fft", "Break sound into its frequencies with a Fast Fourier Transform."],
+          ["Synthesizer", "synthesizer", "synthesizer", "Play a simple synth built from oscillators and envelopes."]
+        ]
+      },
+      {
+        id: "principles", title: "Programming principles",
+        intro: "Data structures are a pillar of programming. See a stack and a circular queue come to life in p5.js, followed by visual walkthroughs of binary search and bubble sort.",
+        items: [
+          ["Stack", "stack", "stack", "Push and pop elements to see last-in, first-out in action."],
+          ["Queue", "circular-queue", "queue", "A circular queue that wraps around as items come and go."],
+          ["Binary Search", "binary-search", "bsearch", "Watch the search range halve with every comparison."],
+          ["Bubble Sort", "bubble-sort", "bsort", "Follow values bubbling into place, one swap at a time."]
+        ]
+      },
+      {
+        id: "image", title: "Image manipulation", alt: true,
+        intro: "A digital image is a grid of pixels, each holding a numeric value for its intensity or color, and is usually stored as a raster (bitmap) image. Change those numbers and you change the picture.",
+        items: [
+          ["Resolution", "resolution", "resolution", "See how pixel size changes the detail of an image."],
+          ["Edge Detect", "edge-detection", "edge", "Find the outlines of objects by comparing neighboring pixels."],
+          ["Raster Image", "raster-image", "raster", "Explore an image pixel by pixel and rebuild it from code."],
+          ["Video Process", "video-processing", "video", "Apply filters to video frames as they play."]
+        ]
+      },
+      {
+        id: "ml", title: "Machine learning",
+        intro: "Machine learning lets systems learn from data rather than explicit rules. These demos use ml5.js and TensorFlow to analyze and render live webcam data in real time.",
+        note: "The webcam demos need camera access, so please allow it when prompted.",
+        items: [
+          ["Object Detection", "object-detection", "object", "Recognize everyday objects in a live camera feed."],
+          ["Hand Position", "hand-position", "hand", "Track the position of your hand and its key points."],
+          ["Face Detection", "face-tracker", "face", "Detect and follow faces in real time."]
+        ]
+      },
+      {
+        id: "misc", title: "Miscellaneous", alt: true,
+        intro: "A few programs that don't fit neatly elsewhere: a class-based implementation, 2D Perlin noise, recursion, Bézier curves in p5, a Gaussian random function, and a live weather API.",
+        items: [
+          ["Nodes", "nodes-in-free-space", "nodes", "Objects built with classes, floating in free space."],
+          ["Noise", "noise-representation-2d", "noise", "Smooth, natural-looking texture from 2D Perlin noise."],
+          ["Recursion", "recursion", "recursion", "Self-similar shapes drawn by functions that call themselves."],
+          ["Curves", "curves", "curves", "Smooth Bézier curves controlled by anchor points."],
+          ["Gaussian", "gaussian", "gaussian", "A bell-curve distribution of random values, visualized."],
+          ["Weather API", "weather", "weather", "Fetch live weather data and turn it into a visual."]
+        ]
+      }
+    ];
 
-        </div>
+    const root = document.getElementById("collections");
+    collections.forEach((c, i) => {
+      const sec = document.createElement("section");
+      sec.id = c.id;
+      if (c.alt) sec.className = "alt";
+      sec.innerHTML = `
+        <div class="wrap">
+          <div class="module-head reveal">
+            <span class="num">${String(i + 1).padStart(2, "0")} / ${String(collections.length).padStart(2, "0")}</span>
+            <h2>${c.title}</h2>
+            <p>${c.intro}</p>
+            ${c.note ? `<p class="mic-note">${c.note}</p>` : ""}
+          </div>
+          <div class="grid">
+            ${c.items.map(([name, page, icon, desc]) => `
+              <a class="card reveal" href="pages/${page}.html">
+                <div class="icon"><img src="assets/icons/${icon}.svg" alt="" loading="lazy"></div>
+                <h3>${name}</h3>
+                <p>${desc}</p>
+                <span class="go">Open experiment <i>&rarr;</i></span>
+              </a>`).join("")}
+          </div>
+        </div>`;
+      root.appendChild(sec);
+    });
 
-    </body>
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(en => { if (en.isIntersecting) { en.target.classList.add("in"); io.unobserve(en.target); } });
+    }, { threshold: .12 });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+
+    /* About: drifting random squares */
+    (function () {
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const field = document.querySelector(".g-dots");
+      const r = (a, b) => a + Math.random() * (b - a);
+      for (let k = 0; k < 70; k++) {
+        const d = document.createElement("i");
+        const size = r(2, 7);
+        d.style.width = d.style.height = size + "px";
+        d.style.opacity = r(.2, 1);
+        const move = () => { d.style.setProperty("--t", r(3, 7) + "s"); d.style.left = r(1, 97) + "%"; d.style.top = r(1, 95) + "%"; };
+        move();
+        field.appendChild(d);
+        if (!reduce) { const loop = () => { move(); setTimeout(loop, r(2000, 6000)); }; setTimeout(loop, r(0, 3000)); }
+      }
+    })();
+
+    /* Hero: monochrome generative flow field */
+    (function () {
+      const canvas = document.getElementById("heroCanvas");
+      const ctx = canvas.getContext("2d");
+      const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+      let w, h, dpr, particles = [], t = 0, mouse = { x: -999, y: -999 };
+
+      function resize() {
+        dpr = Math.min(devicePixelRatio || 1, 2);
+        w = canvas.clientWidth; h = canvas.clientHeight;
+        canvas.width = w * dpr; canvas.height = h * dpr;
+        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+        ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, w, h);
+        const n = Math.min(Math.floor(w * h / 5500), 380);
+        particles = Array.from({ length: n }, () => ({
+          x: Math.random() * w, y: Math.random() * h,
+          a: .25 + Math.random() * .6, s: .6 + Math.random() * 1.2
+        }));
+      }
+      const angle = (x, y) =>
+        (Math.sin(x * .0042 + t) + Math.cos(y * .0051 - t * .8) + Math.sin((x + y) * .0023 + t * .5)) * Math.PI;
+
+      function step() {
+        ctx.fillStyle = "rgba(255,255,255,.07)";
+        ctx.fillRect(0, 0, w, h);
+        ctx.lineWidth = 1;
+        for (const p of particles) {
+          const a = angle(p.x, p.y), px = p.x, py = p.y;
+          p.x += Math.cos(a) * p.s;
+          p.y += Math.sin(a) * p.s;
+          const dx = p.x - mouse.x, dy = p.y - mouse.y;
+          if (dx * dx + dy * dy < 14000) { p.x += dx * .02; p.y += dy * .02; }
+          ctx.strokeStyle = "rgba(0,0,0," + p.a + ")";
+          ctx.beginPath(); ctx.moveTo(px, py); ctx.lineTo(p.x, p.y); ctx.stroke();
+          if (p.x < 0 || p.x > w || p.y < 0 || p.y > h) { p.x = Math.random() * w; p.y = Math.random() * h; }
+        }
+        t += .0015;
+        if (!reduce) requestAnimationFrame(step);
+      }
+
+      addEventListener("resize", resize);
+      canvas.parentElement.addEventListener("pointermove", e => {
+        const r = canvas.getBoundingClientRect(); mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top;
+      });
+      resize();
+      if (reduce) { for (let i = 0; i < 220; i++) step(); } else { step(); }
+    })();
+  </script>
+</body>
 </html>
