@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/recursion.js"></script>
+  <script src="../assets/js/sketches/recursion.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -41,7 +41,7 @@
       <div class="tags">
         <span class="tag">Miscellaneous</span>
         <span class="tag">p5.js</span>
-        <span class="tag live"><i></i>Slider</span>
+        <span class="tag live"><i></i>Adjustable branch angle</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,20 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Recursion sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Branch angle">
+          <span id="branch-angle-low" class="sampling-label">Narrow</span>
+          <input id="branch-angle-slider" type="range" min="10" max="80" value="30" step="1" aria-label="Branch angle" aria-labelledby="branch-angle-low branch-angle-high">
+          <span id="branch-angle-high" class="sampling-label">Wide</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Slider</b><span>Interaction</span></div>
+        <div class="fact"><b id="branch-angle-value">30°</b><span>Branch angle</span></div>
         <div class="fact"><b>Recursive branching</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Move the slider to change the branching angle.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Move the slider from 10° to 80° to reshape the branching pattern.</p>
     </div>
   </section>
 
@@ -68,12 +74,12 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>A branching tree grows through repeated calls to the same drawing function.</p>
+          <p>A branching tree grows through repeated calls to the same drawing function. Adjust the branch angle from 10° to 80° to explore different forms.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Each call draws a branch and recursively creates smaller branches from its end. The slider changes the angle between the branches.</p>
+          <p>Each call draws a branch and recursively creates smaller branches from its end. The slider controls the angle between the left and right branches.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>

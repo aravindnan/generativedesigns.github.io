@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/resolution.js"></script>
+  <script src="../assets/js/sketches/resolution.js?v=3"></script>
 </head>
 <body>
   <header class="nav">
@@ -49,7 +49,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Resolution sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Image resolution">
+          <span id="resolution-low" class="sampling-label">Low resolution</span>
+          <input id="resolution-level" type="range" min="1" max="25" value="1" step="1" aria-label="Resolution level" aria-labelledby="resolution-low resolution-high">
+          <span id="resolution-high" class="sampling-label">High resolution</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>Source-image sized</b><span>Canvas</span></div>

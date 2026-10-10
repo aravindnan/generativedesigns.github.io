@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/raster-image.js"></script>
+  <script src="../assets/js/sketches/raster-image.js?v=4"></script>
 </head>
 <body>
   <header class="nav">
@@ -49,7 +49,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Raster Image sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Image sampling">
+          <span id="sampling-low" class="sampling-label">Low sampling</span>
+          <input id="sampling-level" type="range" min="10" max="150" value="50" step="1" aria-label="Sampling level" aria-labelledby="sampling-low sampling-high">
+          <span id="sampling-high" class="sampling-label">High sampling</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600 · WEBGL</b><span>Canvas</span></div>

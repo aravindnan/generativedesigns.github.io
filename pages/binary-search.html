@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/binary-search.js"></script>
+  <script src="../assets/js/sketches/binary-search.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -49,12 +49,18 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Binary Search sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"><div class="control-panel" aria-label="Binary search controls">
-        <label for="inp">Search value
-          <input id="inp" type="number" inputmode="numeric">
-        </label>
-        <button type="button" onclick="getVal()">Set value</button>
-      </div></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="control-panel" aria-label="Binary search controls">
+          <label for="inp">Search value
+            <input id="inp" type="number" inputmode="numeric" min="1" max="99" step="1" required aria-describedby="search-value-hint search-value-status">
+          </label>
+          <button type="button" id="set-value" disabled>Set value</button>
+          <button type="button" id="search-now" disabled>Search Now</button>
+          <button type="button" id="reset-search" class="ghost">Reset</button>
+          <span id="search-value-hint" class="control-hint">Enter a whole number from 1 to 99.</span>
+          <span id="search-value-status" class="control-status" role="status" aria-live="polite"></span>
+        </div>
+      </div>
 
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>

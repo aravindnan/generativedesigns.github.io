@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/circular-queue.js"></script>
+  <script src="../assets/js/sketches/circular-queue.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -41,7 +41,7 @@
       <div class="tags">
         <span class="tag">Programming principles</span>
         <span class="tag">p5.js</span>
-        <span class="tag live"><i></i>Keyboard</span>
+        <span class="tag live"><i></i>Keyboard + buttons</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,19 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Circular Queue sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
-      
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="control-panel" aria-label="Circular queue controls">
+          <button type="button" id="enqueue-queue">Enqueue</button>
+          <button type="button" id="dequeue-queue">Dequeue</button>
+        </div>
+      </div>
+
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Keyboard</b><span>Interaction</span></div>
+        <div class="fact"><b>Keyboard + buttons</b><span>Interaction</span></div>
         <div class="fact"><b>Circular data structure</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Press A to enqueue an item; press D to dequeue an item.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Choose Enqueue or press A to add an item; choose Dequeue or press D to remove the front item.</p>
     </div>
   </section>
 
@@ -79,7 +84,7 @@
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <p><code class="fname">action( )</code> - to take user input and perform enqueue or dequeue based on the input</p>
+            <p><code class="fname">enqueue( )</code> and <code class="fname">dequeue( )</code> update the queue from either the buttons or keyboard shortcuts.</p>
           </div>
           <div class="fn">
             <p><code class="fname">drawCircle( )</code> - to draw elements around a circlucar path</p>

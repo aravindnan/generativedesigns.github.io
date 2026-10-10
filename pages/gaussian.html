@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/gaussian.js"></script>
+  <script src="../assets/js/sketches/gaussian.js?v=5"></script>
 </head>
 <body>
   <header class="nav">
@@ -41,7 +41,7 @@
       <div class="tags">
         <span class="tag">Miscellaneous</span>
         <span class="tag">p5.js · Gaussian randomness</span>
-        <span class="tag live"><i></i>Click</span>
+        <span class="tag live"><i></i>Click for a new pattern</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,19 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Gaussian sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="control-panel" aria-label="Gaussian pattern controls">
+          <button type="button" id="new-gaussian-pattern">New pattern</button>
+          <span id="gaussian-pattern-status" class="control-status" role="status" aria-live="polite">Pattern 1 · Click to generate another</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Click</b><span>Interaction</span></div>
-        <div class="fact"><b>Gaussian distribution</b><span>Approach</span></div>
+        <div class="fact"><b>Canvas or button</b><span>Interaction</span></div>
+        <div class="fact"><b id="gaussian-pattern-count">Pattern 1</b><span>Current pattern</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Click the canvas to generate another pattern.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Click the canvas or choose New pattern to generate a fresh black-and-white pattern that grows outward. The page stays in place.</p>
     </div>
   </section>
 
@@ -68,12 +73,12 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>A radial pattern visualises 360 values sampled from a Gaussian distribution.</p>
+          <p>A monochrome radial pattern visualises 360 values sampled from a Gaussian distribution. Generate new samples in place by clicking the canvas or the New pattern button; each pattern grows outward as it animates.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Each random sample sets the length of a spoke around the canvas centre. Click the canvas to reload the page and sample a new set of values.</p>
+          <p>Each Gaussian random sample sets a spoke length around the canvas centre. The spokes slowly expand to the canvas edge and contract in a repeating cycle. Generating a pattern replaces the samples without reloading the page.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>

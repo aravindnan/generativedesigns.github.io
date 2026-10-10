@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <title>2D Noise · Generative Designs</title>
-  <meta name="description" content="A two-dimensional field of Perlin noise controls a changing arrangement of marks.">
+  <meta name="description" content="Adjust the density of a two-dimensional Perlin noise grid and watch its animated line marks change.">
   <link rel="icon" href="../assets/icons/favicon.svg">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/noise-representation-2d.js"></script>
+  <script src="../assets/js/sketches/noise-representation-2d.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -37,11 +37,11 @@
         <span aria-current="page">2D Noise</span>
       </nav>
       <h1>2D Noise</h1>
-      <p class="lead">A two-dimensional field of Perlin noise controls a changing arrangement of marks.</p>
+      <p class="lead">Adjust the density of a two-dimensional Perlin noise grid and watch its animated line marks change.</p>
       <div class="tags">
         <span class="tag">Miscellaneous</span>
         <span class="tag">p5.js · Perlin noise</span>
-        <span class="tag live"><i></i>Slider</span>
+        <span class="tag live"><i></i>Grid density</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,21 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="2D Noise sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Noise grid density">
+          <span id="noise-density-low" class="sampling-label">Low density</span>
+          <input id="noise-density-slider" type="range" min="3" max="50" value="20" step="1" aria-label="Noise grid density" aria-labelledby="noise-density-low noise-density-high">
+          <span id="noise-density-high" class="sampling-label">High density</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Slider</b><span>Interaction</span></div>
+        <div class="fact"><b id="noise-grid-count">20 × 20</b><span>Grid density</span></div>
+        <div class="fact"><b id="noise-mark-count">400</b><span>Line marks</span></div>
         <div class="fact"><b>Perlin noise</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Move the slider to adjust the number of boxes.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Move the slider to choose 3–50 rows and columns; the line-mark count updates with the grid.</p>
     </div>
   </section>
 
@@ -68,12 +75,12 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>Explore a changing grid of line segments shaped by two-dimensional Perlin noise.</p>
+          <p>Explore an animated grid of Perlin-noise line marks, with adjustable density from 3 × 3 to 50 × 50.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Noise values vary smoothly across the grid and over time. The sketch maps each value to a line angle and stroke weight; the slider changes the grid density.</p>
+          <p>Noise values vary smoothly across the grid and over time. The sketch maps each value to a line angle and stroke weight. The slider sets the same number of rows and columns, controlling the total number of marks.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>

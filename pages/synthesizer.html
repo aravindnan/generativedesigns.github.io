@@ -5,18 +5,22 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <title>Synthesizer · Generative Designs</title>
-  <meta name="description" content="A small browser synthesizer turns user input into notes and draws a visual response for the sound.">
+  <meta name="description" content="A small browser synthesizer: tap the pads, slide across them, or press the number keys to play nine notes.">
   <link rel="icon" href="../assets/icons/favicon.svg">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/experiment.css">
+  <style>
+    main canvas { touch-action: manipulation; -webkit-tap-highlight-color: transparent; }
+    .hint { margin-top: 16px; font-size: .88rem; color: var(--muted); }
+    .hint b { color: #000; font-weight: 600; }
+  </style>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.9/Tone.js"></script>
   <script src="../assets/js/sketches/synthesizer.js"></script>
 </head>
 <body>
@@ -39,11 +43,11 @@
         <span aria-current="page">Synthesizer</span>
       </nav>
       <h1>Synthesizer</h1>
-      <p class="lead">A small browser synthesizer turns user input into notes and draws a visual response for the sound.</p>
+      <p class="lead">Nine pads, nine notes. Tap them, slide across them, or press the number keys.</p>
       <div class="tags">
         <span class="tag">Sound manipulation</span>
         <span class="tag">p5.sound</span>
-        <span class="tag live"><i></i>Keyboard</span>
+        <span class="tag live"><i></i>Touch &amp; keyboard</span>
       </div>
     </div>
   </section>
@@ -51,14 +55,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Synthesizer sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
-      
+      <p class="hint"><b>Try it:</b> tap or click a pad and hold to sustain the note. Slide your finger across the pads to glide between notes, or press keys 1 to 9 on a keyboard.</p>
+
       <div class="facts">
-        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Keyboard</b><span>Interaction</span></div>
-        <div class="fact"><b>Sound synthesis</b><span>Approach</span></div>
+        <div class="fact"><b>9</b><span>Notes</span></div>
+        <div class="fact"><b>Touch + keys</b><span>Interaction</span></div>
+        <div class="fact"><b>MonoSynth</b><span>Sound source</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Press keys 1 through 9 to play the notes mapped to the grid.</p>
     </div>
   </section>
 
@@ -70,21 +73,23 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>Play a nine-note synthesizer from the number keys and see the active note highlighted in a three-by-three grid.</p>
+          <p>A nine-note synthesizer laid out as a three-by-three grid. Press a pad and it fills in, ripples outward and plays its note. Let go and it leaves a faint echo behind.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Each key from 1 to 9 selects a note and triggers the p5 MonoSynth. The matching grid cell is highlighted while that note is active.</p>
+          <p>Each pad is tied to a note. Pointer events (touch, mouse and pen) and the number keys all feed the same code, which starts the note while a pad is held and releases it afterwards. Every pad eases toward its pressed or resting state each frame, which gives the soft motion.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <p><code class="fname">addEventListener( )</code> - to obtain key input from the user</p>
+            <span class="fname">addEventListener( )</span>
+            <p>Listens for pointer and keyboard input from the user.</p>
           </div>
           <div class="fn">
-            <p><code class="fname">MonoSynth( )</code> - library function to produce musical notes based on key input using a switch case</p>
+            <span class="fname">MonoSynth( )</span>
+            <p>Library function that produces a musical note; triggerAttack( ) starts it and triggerRelease( ) ends it.</p>
           </div>
         </article>
       </div>

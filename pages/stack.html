@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/stack.js"></script>
+  <script src="../assets/js/sketches/stack.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -41,7 +41,7 @@
       <div class="tags">
         <span class="tag">Programming principles</span>
         <span class="tag">p5.js · WEBGL</span>
-        <span class="tag live"><i></i>Keyboard</span>
+        <span class="tag live"><i></i>Keyboard + buttons</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,19 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Stack sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="control-panel" aria-label="Stack controls">
+          <button type="button" id="push-stack">Push</button>
+          <button type="button" id="pop-stack">Pop</button>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600 · WEBGL</b><span>Canvas</span></div>
-        <div class="fact"><b>Keyboard</b><span>Interaction</span></div>
+        <div class="fact"><b>Keyboard + buttons</b><span>Interaction</span></div>
         <div class="fact"><b>LIFO data structure</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Press A to push an element onto the stack; press D to pop the top element.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Choose Push or press A to add an element; choose Pop or press D to remove the top element.</p>
     </div>
   </section>
 
@@ -79,7 +84,7 @@
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <p><code class="fname">action( )</code> - user defined function to push and pop elemets in stack internally based on key input</p>
+            <p><code class="fname">pushStack( )</code> and <code class="fname">popStack( )</code> handle both the on-screen buttons and keyboard input.</p>
           </div>
           <div class="fn">
             <p><code class="fname">box( )</code> - library function to display a cuboid in a particular locaiton</p>

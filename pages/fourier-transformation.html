@@ -5,13 +5,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#ffffff">
   <title>Fourier Transformation · Generative Designs</title>
-  <meta name="description" content="Explore a selected musical track through a live frequency spectrum, waveform and circular visualisation.">
+  <meta name="description" content="Pick an instrument and watch its sound unfold as a ring of frequencies, a waveform circle and a trail of ripples.">
   <link rel="icon" href="../assets/icons/favicon.svg">
   <script>document.documentElement.classList.add('js');</script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../assets/css/experiment.css">
+
+  <style>
+    /* Player (this page only) */
+    main canvas { cursor: pointer; }
+    .player {
+      display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 28px;
+      margin-top: 24px; padding: 20px 24px; border-radius: var(--radius); background: var(--bg-soft);
+    }
+    .play {
+      position: relative; width: 56px; height: 56px; border: 0; border-radius: var(--radius);
+      background: #000; color: #fff; cursor: pointer; transition: background .2s;
+    }
+    .play:hover { background: #2a2a2a; }
+    .play svg { position: absolute; inset: 0; margin: auto; width: 22px; height: 22px; fill: currentColor; display: none; }
+    .play .i-play { display: block; }
+    .play.is-playing .i-play { display: none; }
+    .play.is-playing .i-pause { display: block; }
+    .play.is-loading .i-play, .play.is-loading .i-pause { display: none; }
+    .play.is-loading .i-load { display: block; fill: none; stroke: currentColor; stroke-width: 2.5; animation: spin .9s linear infinite; }
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .play:focus-visible, .chip:focus-visible, .player input:focus-visible { outline: 2px solid #000; outline-offset: 3px; }
+
+    .player-main { display: grid; gap: 14px; min-width: 0; }
+    .tracks { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip {
+      font: inherit; font-size: .88rem; font-weight: 500; padding: 8px 16px; border: 0; border-radius: var(--radius);
+      background: #fff; color: #000; cursor: pointer; transition: background .2s, color .2s;
+    }
+    .chip:hover { background: #e9e9e9; }
+    .chip[aria-pressed="true"] { background: #000; color: #fff; }
+
+    .timeline { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 14px; }
+    .time { font-size: .8rem; color: var(--muted); font-variant-numeric: tabular-nums; min-width: 2.6em; }
+    .time:last-child { text-align: right; }
+
+    .player input[type=range] { -webkit-appearance: none; appearance: none; width: 100%; height: 20px; background: transparent; cursor: pointer; margin: 0; }
+    .player input[type=range]:disabled { cursor: default; opacity: .45; }
+    .player input[type=range]::-webkit-slider-runnable-track { height: 2px; background: linear-gradient(to right, #000 var(--p, 0%), rgba(0,0,0,.18) var(--p, 0%)); }
+    .player input[type=range]::-moz-range-track { height: 2px; background: rgba(0,0,0,.18); }
+    .player input[type=range]::-moz-range-progress { height: 2px; background: #000; }
+    .player input[type=range]::-webkit-slider-thumb { -webkit-appearance: none; width: 12px; height: 12px; margin-top: -5px; border-radius: 2px; background: #000; border: 0; }
+    .player input[type=range]::-moz-range-thumb { width: 12px; height: 12px; border-radius: 2px; background: #000; border: 0; }
+
+    .vol { display: flex; align-items: center; gap: 10px; width: 150px; }
+    .vol svg { flex: none; width: 18px; height: 18px; fill: #000; }
+
+    .hint { margin-top: 16px; font-size: .88rem; color: var(--muted); min-height: 1.4em; }
+    .hint b { color: #000; font-weight: 600; }
+    .hint .status { color: #000; margin-left: 10px; }
+
+    @media (max-width: 760px) {
+      .player { grid-template-columns: auto 1fr; gap: 18px 20px; padding: 18px; }
+      .vol { grid-column: 1 / -1; width: 100%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .play.is-loading .i-load { animation-duration: 3s; } }
+  </style>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/addons/p5.sound.js"></script>
@@ -38,11 +95,11 @@
         <span aria-current="page">Fourier Transformation</span>
       </nav>
       <h1>Fourier Transformation</h1>
-      <p class="lead">Explore a selected musical track through a live frequency spectrum, waveform and circular visualisation.</p>
+      <p class="lead">Pick an instrument and watch its sound unfold as a ring of frequencies, a waveform circle and a trail of ripples.</p>
       <div class="tags">
         <span class="tag">Sound manipulation</span>
-        <span class="tag">p5.sound · FFT</span>
-        <span class="tag live"><i></i>Track selector + audio</span>
+        <span class="tag">p5.sound &middot; FFT</span>
+        <span class="tag live"><i></i>Live audio</span>
       </div>
     </div>
   </section>
@@ -50,25 +107,40 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Fourier Transformation sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"><div class="control-panel" aria-label="Audio track controls">
-        <label for="mtype">Track
-          <select id="mtype" name="mtype">
-            <option value="v" selected>Violin</option>
-            <option value="p">Piano</option>
-            <option value="s">Saxophone</option>
-            <option value="f">Flute</option>
-          </select>
+
+      <div class="player" id="player" aria-label="Audio player">
+        <button class="play" id="play" type="button" aria-label="Play">
+          <svg class="i-play" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 4.5v15l13-7.5z"/></svg>
+          <svg class="i-pause" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 4h4.5v16H6zM13.5 4H18v16h-4.5z"/></svg>
+          <svg class="i-load" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 1 9 9" stroke-linecap="square"/></svg>
+        </button>
+
+        <div class="player-main">
+          <div class="tracks" role="group" aria-label="Choose a track">
+            <button class="chip" type="button" data-track="violin" aria-pressed="true">Violin</button>
+            <button class="chip" type="button" data-track="piano" aria-pressed="false">Piano</button>
+            <button class="chip" type="button" data-track="flute" aria-pressed="false">Flute</button>
+          </div>
+          <div class="timeline">
+            <span class="time" id="tcur">0:00</span>
+            <input id="seek" type="range" min="0" max="1000" value="0" step="1" aria-label="Seek" disabled>
+            <span class="time" id="tdur">0:00</span>
+          </div>
+        </div>
+
+        <label class="vol">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9zM16 8.5a4.5 4.5 0 0 1 0 7v-2a2.5 2.5 0 0 0 0-3z"/></svg>
+          <input id="vol" type="range" min="0" max="100" value="60" step="1" aria-label="Volume">
         </label>
-        <button type="button" onclick="changeTrack()">Change track</button>
-        <button type="button" class="secondary" onclick="togglePlay()">Play / pause</button>
-      </div></div>
-      
-      <div class="facts">
-        <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Track selector + audio</b><span>Interaction</span></div>
-        <div class="fact"><b>FFT + waveform</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Choose a track and select Change, then click the canvas to start or pause playback. Track changes may take a few seconds to load.</p>
+
+      <p class="hint"><b>Tip:</b> click the canvas to play or pause, or choose another instrument to switch instantly.<span class="status" id="status" role="status" aria-live="polite"></span></p>
+
+      <div class="facts">
+        <div class="fact"><b>3</b><span>Instruments</span></div>
+        <div class="fact"><b>1024</b><span>FFT bins</span></div>
+        <div class="fact"><b>72</b><span>Frequency bands</span></div>
+      </div>
     </div>
   </section>
 
@@ -80,21 +152,27 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>Choose a bundled music track and explore its changing spectrum, waveform and circular audio visualisation.</p>
+          <p>Each instrument is analysed as it plays. Its frequencies become a ring of bars that reach both outward and inward, its waveform becomes a wobbling circle in the middle, and the recent past drifts outward as fading ripples. The middle ring swells with the bass.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>p5.FFT analyses the audio in both the frequency and time domains. Frequency values drive the spectrum bars, while waveform samples are drawn as curves.</p>
+          <p>p5.FFT splits the audio into 1024 frequency values. They are grouped into 72 bands on a logarithmic scale, mirrored left and right, and drawn as bars that grow outward with the level and inward on louder hits, with slowly falling peak markers. The waveform is bent into a ring, and a copy is saved every few frames so older rings move outward and fade.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>
           <h3>Functions used</h3>
           <div class="fn">
-            <p><code class="fname">waveform( )</code> - computes amplitude values along the time domain.</p>
+            <span class="fname">analyze( )</span>
+            <p>Amplitude values along the frequency domain, from low to high.</p>
           </div>
           <div class="fn">
-            <p><code class="fname">analyze( )</code> - amplitude values along the frequency domain.Frequencies from the low to the high</p>
+            <span class="fname">waveform( )</span>
+            <p>Amplitude values along the time domain.</p>
+          </div>
+          <div class="fn">
+            <span class="fname">getEnergy( )</span>
+            <p>Average energy of a frequency range, here the bass.</p>
           </div>
         </article>
       </div>
@@ -115,6 +193,55 @@
   </div>
 
   <footer><div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div></footer>
+
+  <script>
+    /* Player wiring: talks to window.FourierViz from the sketch */
+    (function () {
+      var V = window.FourierViz;
+      if (!V) return;
+      var $ = function (id) { return document.getElementById(id); };
+      var play = $('play'), seek = $('seek'), vol = $('vol'), tcur = $('tcur'), tdur = $('tdur'), status = $('status');
+      var chips = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+      var dragging = false;
+
+      function fmt(s) {
+        s = Math.max(0, Math.floor(isFinite(s) ? s : 0));
+        return Math.floor(s / 60) + ':' + ('0' + (s % 60)).slice(-2);
+      }
+      function fill(input) { input.style.setProperty('--p', (input.value / input.max * 100) + '%'); }
+      function setText(el, text) { if (el.textContent !== text) el.textContent = text; }
+
+      play.addEventListener('click', V.toggle);
+      chips.forEach(function (c) { c.addEventListener('click', function () { V.select(c.getAttribute('data-track')); }); });
+
+      seek.addEventListener('input', function () {
+        dragging = true; fill(seek);
+        setText(tcur, fmt(seek.value / seek.max * (V.state().duration || 0)));
+      });
+      seek.addEventListener('change', function () { V.seek(seek.value / seek.max); dragging = false; });
+
+      vol.addEventListener('input', function () { V.volume(vol.value / 100); fill(vol); });
+      fill(vol);
+
+      function tick() {
+        var s = V.state();
+        play.classList.toggle('is-playing', s.playing);
+        play.classList.toggle('is-loading', s.loading);
+        play.setAttribute('aria-label', s.loading ? 'Loading' : (s.playing ? 'Pause' : 'Play'));
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c.getAttribute('data-track') === s.track ? 'true' : 'false'); });
+        seek.disabled = !s.ready;
+        if (!dragging) {
+          seek.value = s.duration ? Math.round(s.time / s.duration * seek.max) : 0;
+          fill(seek);
+          setText(tcur, fmt(s.time));
+        }
+        setText(tdur, fmt(s.duration));
+        setText(status, s.error ? "Couldn't load this track. Check that its audio file is in assets/audio." : (s.loading ? 'Loading ' + Math.round(s.loadProgress * 100) + '%' : ''));
+        requestAnimationFrame(tick);
+      }
+      tick();
+    })();
+  </script>
   <script src="../assets/js/helpers.js"></script>
   <script src="../assets/js/experiment-page.js"></script>
 </body>

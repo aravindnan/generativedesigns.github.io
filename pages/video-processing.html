@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/video-processing.js"></script>
+  <script src="../assets/js/sketches/video-processing.js?v=3"></script>
 </head>
 <body>
   <header class="nav">
@@ -49,7 +49,13 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Video Processing sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Video sampling">
+          <span id="video-sampling-low" class="sampling-label">Low sampling</span>
+          <input id="video-sampling-level" type="range" min="5" max="30" value="5" step="0.5" aria-label="Video sampling level" aria-labelledby="video-sampling-low video-sampling-high">
+          <span id="video-sampling-high" class="sampling-label">High sampling</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 450</b><span>Canvas</span></div>

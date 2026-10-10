@@ -15,7 +15,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/mount-sketch.js"></script>
-  <script src="../assets/js/sketches/nodes-in-free-space.js"></script>
+  <script src="../assets/js/sketches/nodes-in-free-space.js?v=2"></script>
 </head>
 <body>
   <header class="nav">
@@ -41,7 +41,7 @@
       <div class="tags">
         <span class="tag">Miscellaneous</span>
         <span class="tag">p5.js</span>
-        <span class="tag live"><i></i>Automatic</span>
+        <span class="tag live"><i></i>Adjustable node count</span>
       </div>
     </div>
   </section>
@@ -49,14 +49,20 @@
   <section class="stage" id="sketch">
     <div class="wrap">
       <main aria-label="Nodes in Free Space sketch"></main>
-      <div class="sketch-controls" id="sketch-controls"></div>
+      <div class="sketch-controls" id="sketch-controls">
+        <div class="sampling-control" role="group" aria-label="Node count">
+          <span id="node-count-low" class="sampling-label">3 nodes</span>
+          <input id="node-count-slider" type="range" min="3" max="50" value="35" step="1" aria-label="Number of nodes" aria-labelledby="node-count-low node-count-high">
+          <span id="node-count-high" class="sampling-label">50 nodes</span>
+        </div>
+      </div>
       
       <div class="facts">
         <div class="fact"><b>600 × 600</b><span>Canvas</span></div>
-        <div class="fact"><b>Automatic</b><span>Interaction</span></div>
+        <div class="fact"><b id="node-count-value">35</b><span>Nodes</span></div>
         <div class="fact"><b>Animated nodes</b><span>Approach</span></div>
       </div>
-      <p class="interaction-note"><strong>Try it:</strong> Watch the nodes move through the canvas.</p>
+      <p class="interaction-note"><strong>Try it:</strong> Move the slider to choose between 3 and 50 moving nodes.</p>
     </div>
   </section>
 
@@ -68,12 +74,12 @@
         <article class="grow reveal" style="--d:.05s">
           <span class="num">01</span>
           <h3>Description</h3>
-          <p>Watch moving nodes form temporary connections as they travel around a bounded field.</p>
+          <p>Choose between 3 and 50 moving nodes and watch them form temporary connections as they travel around a bounded field.</p>
         </article>
         <article class="grow reveal" style="--d:.15s">
           <span class="num">02</span>
           <h3>Logic used</h3>
-          <p>Each node moves with a small velocity and bounces off the canvas edges. Nodes within 200 pixels of one another are connected by lines.</p>
+          <p>The selected number of nodes move with small velocities and bounce off the canvas edges. Nodes within 200 pixels of one another are connected by lines.</p>
         </article>
         <article class="grow reveal" style="--d:.25s">
           <span class="num">03</span>
