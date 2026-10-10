@@ -1,15 +1,21 @@
-<html>
-<html lang="">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
-  <link rel="stylesheet" href="path/to/font-awesome/css/font-awesome.min.css">
+  <meta name="theme-color" content="#ffffff">
+  <title>Infinite Pattern · Generative Designs</title>
+  <meta name="description" content="Floral patterns that are generated endlessly and never repeat, drawn with p5.js.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.className += ' js';</script>
 
-  <title>Infinite Pattern Generator</title>
-  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
+  <script src="../assets/js/mount-sketch.js"></script>
+
   <script src="../assets/vendor/p5/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <!-- <script src="../addons/p5.sound.js"></script> -->
@@ -18,34 +24,104 @@
 </head>
 
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Infinite Pattern</h1>
-    <div class="grow">
-      <h3> Description  </h3>
-      <p> Floral patterns being generated which are non repeating.
-        randominzation is done based on the number of sides of the
-         polygon, radius of the shapes and colors used. 
-      </p>
 
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#randomness">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p>  Each frame is used to print different pattern
-         combination with a frame rate of 1. Each group of elements 
-         are drawn using different functions with appropriate arguments </p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#randomness">System randomness</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Infinite Pattern</span>
+      </nav>
+      <h1>Infinite Pattern</h1>
+      <p class="lead">Floral patterns that bloom endlessly and never repeat, redrawn once every second.</p>
+      <div class="tags">
+        <span class="tag">System randomness</span>
+        <span class="tag">p5.js</span>
+        <span class="tag live"><i></i>Live &middot; 1 fps</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">Poly( )</span> - user defined function to draw a polygon of N sides</p>
-      <p><span class="fname">pointOnCircle( )</span> - to calculate the coordiantes a round a given circle</p>
-      
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main></main>
+      <div class="facts">
+        <div class="fact"><b>1 fps</b><span>Frame rate</span></div>
+        <div class="fact"><b>3</b><span>Randomised properties</span></div>
+        <div class="fact"><b>2</b><span>Helper functions</span></div>
+      </div>
     </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <div class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>Floral patterns that are generated endlessly and never repeat. Each pattern is randomised by the number of sides of its polygons, the radius of its shapes and the colours used.</p>
+        </div>
+        <div class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Every frame prints a different combination of elements, at a frame rate of 1. Each group of elements is drawn by its own function with suitable arguments.</p>
+        </div>
+        <div class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <span class="fname">Poly( )</span>
+            <p>User-defined function that draws a polygon with N sides.</p>
+          </div>
+          <div class="fn">
+            <span class="fname">pointOnCircle( )</span>
+            <p>Calculates the coordinates of a point on a given circle.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="../index.html#randomness">
+        <small>Collection</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> System randomness</strong>
+      </a>
+      <a class="next" href="grid-pattern-generator.html">
+        <small>Next</small>
+        <strong>Grid Pattern <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
+
+  <footer>
+    <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
+  </footer>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: .12 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
 </body>
 
 </html>

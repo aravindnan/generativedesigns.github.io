@@ -1,14 +1,21 @@
-<html>
-<html lang="">
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-  <link rel="icon" href="../assets/icons/favicon.svg">
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="../assets/css/demo.css">
+  <meta name="theme-color" content="#ffffff">
+  <title>Grid Pattern · Generative Designs</title>
+  <meta name="description" content="A 6 × 6 grid of tiles that each have a random chance of lighting up, redrawn every frame with p5.js.">
+  <link rel="icon" href="../assets/icons/favicon.svg">
+  <script>document.documentElement.className += ' js';</script>
 
-  <title>Grid Pattern Generator</title>
- 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../assets/css/experiment.css">
+  <script src="../assets/js/mount-sketch.js"></script>
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
   <script src="../assets/vendor/p5/p5.svg.js"></script>
   <script src="../assets/js/sketches/grid-pattern-generator.js"></script>
@@ -16,34 +23,104 @@
 </head>
 
 <body>
-  <main>
-  </main>
-  <div class="Info">
-    <h1 style="font-size: 4vw;color: #2d2e2e;">Grid Pattern</h1>
-    <div class="grow">
-      <h3> Description </h3>
-      <p> A 6 X 6 changing square grid with each tile having a random probability of being highlighted.
 
-      </p>
-
+  <header class="nav">
+    <div class="wrap">
+      <a class="brand" href="../index.html"><img src="../assets/icons/favicon.svg" alt="">Generative Designs</a>
+      <ul class="nav-links">
+        <li><a href="#sketch">Sketch</a></li>
+        <li><a href="#details">Details</a></li>
+        <li><a class="btn ghost small" href="../index.html#randomness">&larr; All experiments</a></li>
+      </ul>
     </div>
-    <div class="grow">
-      <h3> Logic Used </h3>
-      <p> Each tile is seperately being print on each
-         frame with a 0.4 chance of being highlighted or 
-         internally a tile being printed at the same
-          center with a reduced radius</p>
+  </header>
 
+  <section class="hero">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb">
+        <a href="../index.html">Home</a><span aria-hidden="true">/</span>
+        <a href="../index.html#randomness">System randomness</a><span aria-hidden="true">/</span>
+        <span aria-current="page">Grid Pattern</span>
+      </nav>
+      <h1>Grid Pattern</h1>
+      <p class="lead">A grid of tiles that keep deciding, at random, which of them should light up.</p>
+      <div class="tags">
+        <span class="tag">System randomness</span>
+        <span class="tag">p5.js</span>
+        <span class="tag live"><i></i>Live</span>
+      </div>
     </div>
+  </section>
 
-    <div class="grow">
-      <h3> Functions Used </h3>
-      <p><span class="fname">random( )</span> - library function to obtain a random between 0-1</p>
-      <p><span class="fname">rect( )</span> - library function to draw a rectangle at given center with given diamensions </p>
-      
+  <section class="stage" id="sketch">
+    <div class="wrap">
+      <main></main>
+      <div class="facts">
+        <div class="fact"><b>6 &times; 6</b><span>Tiles</span></div>
+        <div class="fact"><b>0.4</b><span>Highlight chance per tile</span></div>
+        <div class="fact"><b>2</b><span>Library functions</span></div>
+      </div>
     </div>
+  </section>
 
+  <section class="details" id="details">
+    <div class="wrap">
+      <div class="section-label">Under the hood</div>
+      <h2>How it works</h2>
+      <div class="cols Info">
+        <div class="grow reveal" style="--d:.05s">
+          <span class="num">01</span>
+          <h3>Description</h3>
+          <p>A 6 &times; 6 square grid that redraws itself on every frame. Each tile has a random chance of being highlighted, so the pattern is never the same twice.</p>
+        </div>
+        <div class="grow reveal" style="--d:.15s">
+          <span class="num">02</span>
+          <h3>Logic used</h3>
+          <p>Every tile is drawn separately on each frame. A tile has a 0.4 chance of being highlighted, which is done by drawing a second, smaller square at the same centre with a reduced size.</p>
+        </div>
+        <div class="grow reveal" style="--d:.25s">
+          <span class="num">03</span>
+          <h3>Functions used</h3>
+          <div class="fn">
+            <span class="fname">random( )</span>
+            <p>Library function that returns a random number between 0 and 1.</p>
+          </div>
+          <div class="fn">
+            <span class="fname">rect( )</span>
+            <p>Library function that draws a rectangle at a given position with given dimensions.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <nav class="pager" aria-label="More experiments">
+      <a class="prev" href="infinite-pattern-generator.html">
+        <small>Previous</small>
+        <strong><span class="arrow prev-arrow">&larr;</span> Infinite Pattern</strong>
+      </a>
+      <a class="next" href="spiral.html">
+        <small>Next</small>
+        <strong>3D Spiral <span class="arrow next-arrow">&rarr;</span></strong>
+      </a>
+    </nav>
   </div>
+
+  <footer>
+    <div class="wrap">Generative Designs Using Programming &middot; Built with HTML, JavaScript, p5.js &amp; ml5.js</div>
+  </footer>
+
+  <script>
+    (function () {
+      var els = document.querySelectorAll('.reveal');
+      if (!('IntersectionObserver' in window)) { els.forEach(function (e) { e.classList.add('in'); }); return; }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); io.unobserve(en.target); } });
+      }, { threshold: .12 });
+      els.forEach(function (e) { io.observe(e); });
+    })();
+  </script>
 </body>
 
 </html>
