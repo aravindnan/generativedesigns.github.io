@@ -125,6 +125,66 @@ main canvas, main svg {
   font: inherit;
 }
 .control-panel input[type="number"] { width: 132px; }
+.sampling-control {
+  display: grid;
+  grid-template-columns: max-content minmax(160px, 1fr) max-content;
+  align-items: center;
+  gap: clamp(12px, 3vw, 28px);
+  width: min(100%, 940px);
+  margin: 16px auto 0;
+}
+.sketch-controls > .sampling-control { margin: 0 auto !important; }
+.sampling-label {
+  color: var(--muted);
+  font-size: .88rem;
+  font-weight: 500;
+  white-space: nowrap;
+}
+.sampling-control input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  min-width: 0;
+  height: 36px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  cursor: pointer;
+}
+.sampling-control input[type="range"]::-webkit-slider-runnable-track {
+  height: 3px;
+  background: linear-gradient(to right, #000 var(--p, 0%), rgba(0,0,0,.18) var(--p, 0%));
+}
+.sampling-control input[type="range"]::-moz-range-track {
+  height: 3px;
+  background: rgba(0,0,0,.18);
+}
+.sampling-control input[type="range"]::-moz-range-progress {
+  height: 3px;
+  background: #000;
+}
+.sampling-control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  margin-top: -7.5px;
+  border: 0;
+  border-radius: 2px;
+  background: #000;
+}
+.sampling-control input[type="range"]::-moz-range-thumb {
+  width: 18px;
+  height: 18px;
+  border: 0;
+  border-radius: 2px;
+  background: #000;
+}
+.sampling-control input[type="range"]:focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 5px;
+}
 .control-panel button, .sketch-controls button {
   min-height: 42px;
   padding: 8px 16px;
@@ -136,6 +196,26 @@ main canvas, main svg {
   cursor: pointer;
   transition: background .2s, color .2s;
 }
+.control-panel button:disabled, .sketch-controls button:disabled {
+  cursor: not-allowed;
+  opacity: .45;
+}
+.control-panel button.ghost {
+  border-color: var(--line);
+  background: transparent;
+  color: var(--text);
+}
+.control-panel button.ghost:hover:not(:disabled) {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+.control-hint, .control-status {
+  color: var(--muted);
+  font-size: .8rem;
+}
+.control-hint { flex-basis: 100%; }
+.control-status { flex-basis: 100%; min-height: 1.3em; }
 .sketch-controls button {
   width: auto !important;
   height: auto !important;
@@ -146,11 +226,22 @@ main canvas, main svg {
   color: #fff !important;
   font: inherit !important;
 }
-.control-panel button:hover, .sketch-controls button:hover {
+.control-panel button:hover:not(:disabled), .sketch-controls button:hover:not(:disabled) {
   background: #fff;
   color: #000;
 }
-.sketch-controls button:hover { background: #fff !important; color: #000 !important; }
+.sketch-controls button:hover:not(:disabled) { background: #fff !important; color: #000 !important; }
+.sketch-controls button:disabled { cursor: not-allowed; opacity: .45; }
+.sketch-controls .control-panel button.ghost {
+  border: 1px solid var(--line) !important;
+  background: transparent !important;
+  color: var(--text) !important;
+}
+.sketch-controls .control-panel button.ghost:hover:not(:disabled) {
+  border-color: #000 !important;
+  background: #000 !important;
+  color: #fff !important;
+}
 .control-panel input[type="range"], .sketch-controls input[type="range"] {
   accent-color: #000;
 }
@@ -218,6 +309,8 @@ footer { padding: 36px 0 48px; text-align: center; color: var(--muted); font-siz
   .pager { grid-template-columns: 1fr; }
   .pager .next { text-align: left; }
   .facts { gap: 14px 36px; }
+  .sampling-control { grid-template-columns: max-content minmax(50px, 1fr) max-content; gap: 6px; }
+  .sampling-label { font-size: .68rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
